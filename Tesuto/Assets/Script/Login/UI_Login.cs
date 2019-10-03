@@ -70,10 +70,10 @@ public class UI_Login : MonoBehaviour {
     {
         switch (index)
         {
-            case 0:
+            case 0: //中文
                 System_Setting.Language = 0;
                 break;
-            case 1:
+            case 1: //英文
                 System_Setting.Language = 1;
                 break;
             default:
