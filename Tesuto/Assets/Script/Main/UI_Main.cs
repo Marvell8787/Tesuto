@@ -6,36 +6,29 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 public class UI_Main : MonoBehaviour {
-
-    #region Home ui
-    public GameObject ui_Home, ui_Task_Goal;
-    #endregion
-
-    #region Home icon
-    public GameObject Task,Learn,Battle,Guide,Profile,Deck,Badges,Rank,Shop;
-    #endregion
-
-    #region Home Goal
-    public GameObject Task_Goal;
-    #endregion
-
-    #region Home Audio
-    public AudioSource ok;
-    #endregion
-
-    #region Home Text
-    public Text text_Info,text_Task_Content;
-    #endregion
-
-    #region variable Events
+    
+    #region Variable Events
     EventTriggerType EPEnter = EventTriggerType.PointerEnter;
     EventTriggerType EPExit = EventTriggerType.PointerExit;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
+    #region Home
+    public GameObject ui_Home, ui_Task_Goal;
+    public GameObject Task, Learn, Battle, Guide, Profile, Deck, Badges, Rank, Shop;
+    public GameObject Task_Goal;
+    public AudioSource ok, cancel;
+    public Text text_Info;
+    #endregion
+
+    #region Task 
+    public GameObject ui_Task, ui_Task_Content;
+    #endregion
+
+
     // Use this for initialization
     void Start () {
-        #region PointerEnter
+        #region Home PointerEnter
         AddEvents.AddTriggersListener(Task, EPEnter, Home_PointerEnter.Task);
         AddEvents.AddTriggersListener(Learn, EPEnter, Home_PointerEnter.Learn);
         AddEvents.AddTriggersListener(Battle, EPEnter, Home_PointerEnter.Battle);
@@ -49,7 +42,7 @@ public class UI_Main : MonoBehaviour {
 
         #endregion
 
-        #region PointerExit
+        #region Home PointerExit
         AddEvents.AddTriggersListener(Task, EPExit, Home_PointerExit.Exit);
         AddEvents.AddTriggersListener(Learn, EPExit, Home_PointerExit.Exit);
         AddEvents.AddTriggersListener(Battle, EPExit, Home_PointerExit.Exit);
@@ -62,7 +55,7 @@ public class UI_Main : MonoBehaviour {
         AddEvents.AddTriggersListener(Task_Goal, EPExit, Home_PointerExit.Exit);
         #endregion
 
-        #region PointerClick
+        #region Home PointerClick
         AddEvents.AddTriggersListener(Task, EPClick, Enter_Task);
         AddEvents.AddTriggersListener(Learn, EPClick, Enter_Learn);
         AddEvents.AddTriggersListener(Battle, EPClick, Enter_Battle);
@@ -76,11 +69,12 @@ public class UI_Main : MonoBehaviour {
 
     }
 
-    #region PointerClick
+    #region Home PointerClick Function
     public void Enter_Task(BaseEventData data)
     {
         ok.Play();
-        text_Info.text = "請選擇要接的任務";
+        text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
+        ui_Task.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
     }
