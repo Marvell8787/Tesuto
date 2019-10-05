@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class UI_Main : MonoBehaviour {
     
@@ -25,6 +26,10 @@ public class UI_Main : MonoBehaviour {
     public GameObject ui_Task, ui_Task_Content;
     #endregion
 
+    #region Learn 
+    public GameObject ui_Learn;
+    public Button Button_Material,Button_Level,Button_Cancel;
+    #endregion
 
     // Use this for initialization
     void Start () {
@@ -67,6 +72,11 @@ public class UI_Main : MonoBehaviour {
         AddEvents.AddTriggersListener(Rank, EPClick, Enter_Rank);
         #endregion
 
+        #region Learn
+        Button_Material.onClick.AddListener(Material);
+        Button_Level.onClick.AddListener(Level);
+        Button_Cancel.onClick.AddListener(Learn_Cancel);
+        #endregion
     }
 
     #region Home PointerClick Function
@@ -81,6 +91,10 @@ public class UI_Main : MonoBehaviour {
     public void Enter_Learn(BaseEventData data)
     {
         ok.Play();
+        text_Info.text = "點擊教材可瀏覽本遊戲中的目標單字\n點擊關卡即可進入，並選擇要練習或挑戰";
+        ui_Learn.SetActive(true);
+        ui_Home.SetActive(false);
+        ui_Task_Goal.SetActive(false);
     }
     public void Enter_Battle(BaseEventData data)
     {
@@ -112,5 +126,23 @@ public class UI_Main : MonoBehaviour {
     }
     #endregion
 
+    #region Learn
+    public void Material()
+    {
+        ok.Play();
+    }
+    public void Level()
+    {
+        ok.Play();
+    }
+    void Learn_Cancel()
+    {
+        cancel.Play();
+        ui_Learn.SetActive(false);
+        ui_Home.SetActive(true);
+        ui_Task_Goal.SetActive(true);
+        text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+    }
+    #endregion
 
 }

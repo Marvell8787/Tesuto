@@ -4,19 +4,19 @@ using UnityEngine;
 
 static class Task_Bank
 {
-    public static int[] Learn_Request_Score = new int[7] {80, 80, 60, 80, 80, 60, 60 };
+    public static int[] Learn_Request_Score = new int[7] {90, 90, 80, 90, 90, 80, 80 };
 
-    public static string[] C_Learn_Title = new string[7] { "Level-1", "Level-2", "Level-3", "Level-4", "Level-5", "Level-6", "Overall" };
+    public static string[] C_Learn_Title = new string[7] { "Level-1", "Level-2", "Level-3", "Level-4", "Level-5", "Level-6", "Fin" };
     public static string[] C_Learn_Threshold = new string[7] { "無", "無", "完成Level-1 & Level-2", "無", "無", "完成Level-4 & Level-5", "完成Level-1~6" };
-    public static string[] C_Learn_Request = new string[7] { "Level-1 80分以上！", "Level-2 80分以上！", "Level-3 60分以上！", "Level-4 80分以上！", "Level-5 80分以上！", "Level-6 60分以上！", "Overall 60分以上！" };
+    public static string[] C_Learn_Request = new string[7] { "Level-1 90分以上！", "Level-2 90分以上！", "Level-3 80分以上！", "Level-4 90分以上！", "Level-5 90分以上！", "Level-6 80分以上！", "Overall 80分以上！" };
 
     public static string[] C_Battle_Title = new string[3] { "Battle 1", "Battle 2", "Battle 3" };
     public static string[] C_Battle_Threshold = new string[3] { "無", "完成Battle 1", "完成Battle 2" };
     public static string[] C_Battle_Request = new string[3] { "在Battle 1取得勝利", "在Battle 2取得勝利", "在Battle 3取得勝利" };
 
-    public static string[] E_Learn_Title = new string[7] { "Level-1", "Level-2", "Level-3", "Level-4", "Level-5", "Level-6", "Overall" };
+    public static string[] E_Learn_Title = new string[7] { "Level-1", "Level-2", "Level-3", "Level-4", "Level-5", "Level-6", "Fin" };
     public static string[] E_Learn_Threshold = new string[7] { "None", "None", "Level-1 and Level-2're Over", "None", "None", "Level-4 and Level-5're Over", "Level-1~6're Over" };
-    public static string[] E_Learn_Request = new string[7] { "Complete the Level-1(80)！", "Complete the Level-2(80)！", "Complete the Level-3(60)！", "Complete the Level-4(80)！", "Complete the Level-5(80)！", "Complete the Level-6(60)！", "Complete the Overall(60)！" };
+    public static string[] E_Learn_Request = new string[7] { "Complete the Level-1(90)！", "Complete the Level-2(90)！", "Complete the Level-3(80)！", "Complete the Level-4(90)！", "Complete the Level-5(90)！", "Complete the Level-6(80)！", "Complete the Overall(80)！" };
 
     public static string[] E_Battle_Title = new string[3] { "Battle 1", "Battle 2", "Battle 3" };
     public static string[] E_Battle_Threshold = new string[3] { "None", "Battle 1's Over", "Battle 2's Over" };

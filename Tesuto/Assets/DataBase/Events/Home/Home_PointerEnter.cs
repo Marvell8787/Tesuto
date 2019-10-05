@@ -14,7 +14,7 @@ static class Home_PointerEnter{
         Text t_temp;
         choose.Play();
         t_temp = GameObject.Find("Text_Info").GetComponent<Text>();
-        t_temp.text = "這是任務\n是本遊戲中要完成的目標\n點擊可進入任務清單";
+        t_temp.text = "這是任務\n是本遊戲中要完成的目標\n點擊可開啟任務清單";
     }
     public static void Learn(BaseEventData data)
     {
