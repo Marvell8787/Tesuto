@@ -130,6 +130,7 @@ public class UI_Main : MonoBehaviour {
     public void Material()
     {
         ok.Play();
+        SceneManager.LoadScene("Material");
     }
     public void Level()
     {

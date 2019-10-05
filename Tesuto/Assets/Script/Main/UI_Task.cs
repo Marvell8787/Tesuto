@@ -293,6 +293,7 @@ public class UI_Task : MonoBehaviour {
     }
     void Take()
     {
+        ok.Play();
         //改變狀態
         Task_Data.ChangeStatus(choose_s, choose_n, 2);
         Task_Class task_temp = new Task_Class();
