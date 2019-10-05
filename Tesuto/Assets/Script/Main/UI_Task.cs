@@ -67,7 +67,6 @@ public class UI_Task : MonoBehaviour {
         AddEvents.AddTriggersListener(GameObject_Task[4], EPClick, Task_4);
         AddEvents.AddTriggersListener(GameObject_Task[5], EPClick, Task_5);
         AddEvents.AddTriggersListener(GameObject_Task[6], EPClick, Task_6);
-
         #endregion
 
         #region Task Cancel

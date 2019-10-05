@@ -135,6 +135,7 @@ public class UI_Main : MonoBehaviour {
     public void Level()
     {
         ok.Play();
+        SceneManager.LoadScene("Select_Learn");
     }
     void Learn_Cancel()
     {
