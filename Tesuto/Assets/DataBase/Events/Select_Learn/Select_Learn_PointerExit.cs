@@ -10,6 +10,6 @@ static class Select_Learn_PointerExit{
     {
         Text t_temp;
         t_temp = GameObject.Find("Text_Info").GetComponent<Text>();
-        t_temp.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        t_temp.text = "請選擇要練習或挑戰\n";
     }
 }

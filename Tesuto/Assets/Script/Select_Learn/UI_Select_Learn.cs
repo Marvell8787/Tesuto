@@ -11,6 +11,7 @@ public class UI_Select_Learn : MonoBehaviour {
     #region Variable
     private string choose_s = "";
     private int choose_n = 0;
+    private int n1 = 0,n2=0;
     #endregion
 
     #region Variable Events
@@ -87,73 +88,80 @@ public class UI_Select_Learn : MonoBehaviour {
     #region Task PointerClick Function
     public void Learn_0(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[0].text != "")
         {
             ok.Play();
             choose_n = 0;
             ShowContent(0);
             ui_Content.SetActive(true);
+            n1 = 1;n2 = 10;
         }
 
     }
     public void Learn_1(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[1].text != "")
         {
             ok.Play();
             choose_n = 1;
             ShowContent(1);
             ui_Content.SetActive(true);
+            n1 = 11; n2 = 20;
         }
     }
     public void Learn_2(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[2].text != "")
         {
             ok.Play();
             choose_n = 2;
             ShowContent(2);
             ui_Content.SetActive(true);
+            n1 = 1; n2 = 20;
         }
     }
     public void Learn_3(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[3].text != "")
         {
             ok.Play();
             choose_n = 3;
             ShowContent(3);
             ui_Content.SetActive(true);
+            n1 = 1; n2 = 10;
         }
     }
     public void Learn_4(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[4].text != "")
         {
             ok.Play();
             choose_n = 4;
             ShowContent(4);
             ui_Content.SetActive(true);
+            n1 = 11; n2 = 20;
         }
     }
     public void Learn_5(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[5].text != "")
         {
             ok.Play();
             choose_n = 5;
             ShowContent(5);
             ui_Content.SetActive(true);
+            n1 = 1; n2 = 20;
         }
     }
     public void Learn_6(BaseEventData data)
     {
-        if (choose_s != "")
+        if (choose_s != "" && Text_Level[6].text != "")
         {
             ok.Play();
             choose_n = 6;
             ShowContent(6);
             ui_Content.SetActive(true);
+            n1 = 1; n2 = 20;
         }
     }
     #endregion
@@ -176,10 +184,16 @@ public class UI_Select_Learn : MonoBehaviour {
     }
     void Play() //開始關卡
     {
-
+        ok.Play();
+        if (choose_s == "challenge")
+            Question_Data.Question_Init(choose_n,n1,n2,1);
+        else
+            Question_Data.Question_Init(choose_n, n1, n2, 0);
+        SceneManager.LoadScene("Level");
     }
     void Practice()
     {
+        ok.Play();
         ui_Select.SetActive(true);
         choose_s = "practice";
         Level_Class[] level_temp = new Level_Class[7];
@@ -192,13 +206,19 @@ public class UI_Select_Learn : MonoBehaviour {
 
     void Challenge()
     {
+        ok.Play();
+        Task_Class task_temp = new Task_Class();
         ui_Select.SetActive(true);
         choose_s = "challenge";
         Level_Class[] level_temp = new Level_Class[7];
         for (int i = 0; i < 7; i++)
         {
+            task_temp = Task_Data.Learn_Get(i);
             level_temp[i] = Level_Data.Level_Get(i);
-            Text_Level[i].text = level_temp[i].GetTitle();
+            if (task_temp.GetStatus() == 2 && choose_s == "challenge")
+                Text_Level[i].text = level_temp[i].GetTitle();
+            else
+                Text_Level[i].text = "";
         }
     }
     void ShowContent(int n)
@@ -216,17 +236,11 @@ public class UI_Select_Learn : MonoBehaviour {
         Text_HighestScore_Content.text = level_temp.GetHighestScore();
 
         if (task_temp.GetStatus() == 2 && choose_s == "challenge")
-        {
             Button_Start.interactable = true;
-        }
         else if (choose_s == "practice")
-        {
             Button_Start.interactable = true;
-        }
         else
-        {
             Button_Start.interactable = false;
-        }
 
     }
 }
