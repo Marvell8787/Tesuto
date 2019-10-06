@@ -193,6 +193,7 @@ public class UI_Select_Learn : MonoBehaviour {
     }
     void Practice()
     {
+        ui_Content.SetActive(false);
         ok.Play();
         ui_Select.SetActive(true);
         choose_s = "practice";
@@ -206,6 +207,7 @@ public class UI_Select_Learn : MonoBehaviour {
 
     void Challenge()
     {
+        ui_Content.SetActive(false);
         ok.Play();
         Task_Class task_temp = new Task_Class();
         ui_Select.SetActive(true);
