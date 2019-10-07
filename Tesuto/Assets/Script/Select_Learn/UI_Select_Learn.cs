@@ -200,6 +200,7 @@ public class UI_Select_Learn : MonoBehaviour {
     }
     void Back()
     {
+        ok.Play();
         SceneManager.LoadScene("Main");
     }
     void Play() //開始關卡

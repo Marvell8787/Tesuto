@@ -155,6 +155,7 @@ public class UI_Select_Battle : MonoBehaviour {
     }
     void Back()
     {
+        ok.Play();
         SceneManager.LoadScene("Main");
     }
     void Play() //開始關卡

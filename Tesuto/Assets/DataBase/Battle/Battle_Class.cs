@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Battle_Class : MonoBehaviour {
+class Battle_Class{
 
     private string Title = "";
     private string QuestionType = "";
