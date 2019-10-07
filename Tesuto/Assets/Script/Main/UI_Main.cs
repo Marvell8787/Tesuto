@@ -115,6 +115,7 @@ public class UI_Main : MonoBehaviour {
     public void Enter_Deck(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Deck");
     }
     public void Enter_Badges(BaseEventData data)
     {
