@@ -130,7 +130,7 @@ public class UI_Main : MonoBehaviour {
     }
     #endregion
 
-    #region Home PointerExit
+    #region Home PointerExit Function
     void Exit(BaseEventData data)
     {
         Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
@@ -157,6 +157,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Battle(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Select_Battle");
     }
     public void Click_Guide(BaseEventData data)
     {
