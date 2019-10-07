@@ -19,8 +19,8 @@ public class UI_Task : MonoBehaviour {
 
     #region Home
     public GameObject ui_Home, ui_Task_Goal;
-    public AudioSource ok, cancel;
-    public Text text_Info;
+    public AudioSource ok, cancel,choose;
+    public Text Text_Info;
     #endregion
 
     #region Task 
@@ -48,18 +48,18 @@ public class UI_Task : MonoBehaviour {
         Button_Take.onClick.AddListener(Take);
 
         #region Task PointerEnter
-        AddEvents.AddTriggersListener(Image_Task_Learn, EPEnter, Task_PointerEnter.Task_Learn);
-        AddEvents.AddTriggersListener(Image_Task_Battle, EPEnter, Task_PointerEnter.Task_Battle);
+        AddEvents.AddTriggersListener(Image_Task_Learn, EPEnter, Enter_Task_Learn);
+        AddEvents.AddTriggersListener(Image_Task_Battle, EPEnter, Enter_Task_Battle);
         #endregion
 
         #region Task PointerExit
-        AddEvents.AddTriggersListener(Image_Task_Learn, EPExit, Task_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Image_Task_Battle, EPExit, Task_PointerExit.Exit);
+        AddEvents.AddTriggersListener(Image_Task_Learn, EPExit, Exit);
+        AddEvents.AddTriggersListener(Image_Task_Battle, EPExit, Exit);
         #endregion
 
         #region Task PointerClick
-        AddEvents.AddTriggersListener(Image_Task_Learn, EPClick, Task_Learn);
-        AddEvents.AddTriggersListener(Image_Task_Battle, EPClick, Task_Battle);
+        AddEvents.AddTriggersListener(Image_Task_Learn, EPClick, Click_Task_Learn);
+        AddEvents.AddTriggersListener(Image_Task_Battle, EPClick, Click_Task_Battle);
         AddEvents.AddTriggersListener(GameObject_Task[0], EPClick, Task_0);
         AddEvents.AddTriggersListener(GameObject_Task[1], EPClick, Task_1);
         AddEvents.AddTriggersListener(GameObject_Task[2], EPClick, Task_2);
@@ -75,8 +75,28 @@ public class UI_Task : MonoBehaviour {
         #endregion
     }
 
+    #region Task PointerEnter Function
+    void Enter_Task_Learn(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是任務中的學習分類\n點擊可觀看學習任務";
+    }
+    void Enter_Task_Battle(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是任務中的戰鬥分類\n點擊可觀看戰鬥任務";
+    }
+    #endregion
+
+    #region Task PointerExit Function
+    void Exit(BaseEventData data)
+    {
+        Text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
+    }
+    #endregion
+
     #region Task PointerClick Function
-    public void Task_Learn(BaseEventData data)
+    void Click_Task_Learn(BaseEventData data)
     {
         ui_Task_Content.SetActive(false);
         for (int i = 0; i < 7; i++)
@@ -113,7 +133,7 @@ public class UI_Task : MonoBehaviour {
             }
         }
     }
-    public void Task_Battle(BaseEventData data)
+    void Click_Task_Battle(BaseEventData data)
     {
         ui_Task_Content.SetActive(false);
         for (int i = 0; i < 7; i++)
@@ -150,7 +170,7 @@ public class UI_Task : MonoBehaviour {
             }
         }
     }
-    public void Task_0(BaseEventData data)
+    void Task_0(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -162,7 +182,7 @@ public class UI_Task : MonoBehaviour {
         }
 
     }
-    public void Task_1(BaseEventData data)
+    void Task_1(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -173,7 +193,7 @@ public class UI_Task : MonoBehaviour {
             ui_Task_Content.SetActive(true);
         }
     }
-    public void Task_2(BaseEventData data)
+    void Task_2(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -184,7 +204,7 @@ public class UI_Task : MonoBehaviour {
             ui_Task_Content.SetActive(true);
         }
     }
-    public void Task_3(BaseEventData data)
+    void Task_3(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -195,7 +215,7 @@ public class UI_Task : MonoBehaviour {
             ui_Task_Content.SetActive(true);
         }
     }
-    public void Task_4(BaseEventData data)
+    void Task_4(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -206,7 +226,7 @@ public class UI_Task : MonoBehaviour {
             ui_Task_Content.SetActive(true);
         }
     }
-    public void Task_5(BaseEventData data)
+    void Task_5(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -217,7 +237,7 @@ public class UI_Task : MonoBehaviour {
             ui_Task_Content.SetActive(true);
         }
     }
-    public void Task_6(BaseEventData data)
+    void Task_6(BaseEventData data)
     {
         if (choose_s != "")
         {
@@ -239,7 +259,7 @@ public class UI_Task : MonoBehaviour {
         ui_Task_Content.SetActive(false);
         ui_Home.SetActive(true);
         ui_Task_Goal.SetActive(true);
-        text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
     }
     void Task_Content_Cancel()
     {

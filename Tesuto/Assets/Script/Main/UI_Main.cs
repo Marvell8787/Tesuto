@@ -16,10 +16,10 @@ public class UI_Main : MonoBehaviour {
 
     #region Home
     public GameObject ui_Home, ui_Task_Goal;
-    public GameObject Task, Learn, Battle, Guide, Profile, Deck, Badges, Rank, Shop;
-    public GameObject Task_Goal;
-    public AudioSource ok, cancel;
-    public Text text_Info;
+    public GameObject GameObject_Task, GameObject_Learn, GameObject_Battle, GameObject_Guide, GameObject_Profile, GameObject_Deck, GameObject_Badges, GameObject_Rank, GameObject_Shop;
+    public GameObject GameObject_Task_Goal;
+    public AudioSource ok, cancel,choose;
+    public Text Text_Info;
     #endregion
 
     #region Task 
@@ -34,43 +34,42 @@ public class UI_Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
         #region Home PointerEnter
-        AddEvents.AddTriggersListener(Task, EPEnter, Home_PointerEnter.Task);
-        AddEvents.AddTriggersListener(Learn, EPEnter, Home_PointerEnter.Learn);
-        AddEvents.AddTriggersListener(Battle, EPEnter, Home_PointerEnter.Battle);
-        AddEvents.AddTriggersListener(Guide, EPEnter, Home_PointerEnter.Guide);
-        AddEvents.AddTriggersListener(Profile, EPEnter, Home_PointerEnter.Profile);
-        AddEvents.AddTriggersListener(Shop, EPEnter, Home_PointerEnter.Shop);
-        AddEvents.AddTriggersListener(Deck, EPEnter, Home_PointerEnter.Deck);
-        AddEvents.AddTriggersListener(Badges, EPEnter, Home_PointerEnter.Badges);
-        AddEvents.AddTriggersListener(Rank, EPEnter, Home_PointerEnter.Rank);
-        AddEvents.AddTriggersListener(Task_Goal, EPEnter, Home_PointerEnter.Task_Goal);
-
+        AddEvents.AddTriggersListener(GameObject_Task, EPEnter, Enter_Task);
+        AddEvents.AddTriggersListener(GameObject_Learn, EPEnter, Enter_Learn);
+        AddEvents.AddTriggersListener(GameObject_Battle, EPEnter, Enter_Battle);
+        AddEvents.AddTriggersListener(GameObject_Guide, EPEnter, Enter_Guide);
+        AddEvents.AddTriggersListener(GameObject_Profile, EPEnter, Enter_Profile);
+        AddEvents.AddTriggersListener(GameObject_Shop, EPEnter, Enter_Shop);
+        AddEvents.AddTriggersListener(GameObject_Deck, EPEnter, Enter_Deck);
+        AddEvents.AddTriggersListener(GameObject_Badges, EPEnter, Enter_Badges);
+        AddEvents.AddTriggersListener(GameObject_Rank, EPEnter, Enter_Rank);
+        AddEvents.AddTriggersListener(GameObject_Task_Goal, EPEnter, Enter_Task_Goal);
         #endregion
 
         #region Home PointerExit
-        AddEvents.AddTriggersListener(Task, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Learn, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Battle, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Guide,EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Profile, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Shop, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Deck, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Badges, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Rank, EPExit, Home_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Task_Goal, EPExit, Home_PointerExit.Exit);
+        AddEvents.AddTriggersListener(GameObject_Task, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Learn, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Battle, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Guide,EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Profile, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Shop, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Deck, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Badges, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Rank, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Task_Goal, EPExit, Exit);
         #endregion
 
         #region Home PointerClick
-        AddEvents.AddTriggersListener(Task, EPClick, Enter_Task);
-        AddEvents.AddTriggersListener(Learn, EPClick, Enter_Learn);
-        AddEvents.AddTriggersListener(Battle, EPClick, Enter_Battle);
-        AddEvents.AddTriggersListener(Guide, EPClick, Enter_Guide);
-        AddEvents.AddTriggersListener(Profile, EPClick, Enter_Profile);
-        AddEvents.AddTriggersListener(Shop, EPClick, Enter_Shop);
-        AddEvents.AddTriggersListener(Deck, EPClick, Enter_Deck);
-        AddEvents.AddTriggersListener(Badges, EPClick, Enter_Badges);
-        AddEvents.AddTriggersListener(Rank, EPClick, Enter_Rank);
-        #endregion
+        AddEvents.AddTriggersListener(GameObject_Task, EPClick, Click_Task);
+        AddEvents.AddTriggersListener(GameObject_Learn, EPClick, Click_Learn);
+        AddEvents.AddTriggersListener(GameObject_Battle, EPClick, Click_Battle);
+        AddEvents.AddTriggersListener(GameObject_Guide, EPClick, Click_Guide);
+        AddEvents.AddTriggersListener(GameObject_Profile, EPClick, Click_Profile);
+        AddEvents.AddTriggersListener(GameObject_Shop, EPClick, Click_Shop);
+        AddEvents.AddTriggersListener(GameObject_Deck, EPClick, Click_Deck);
+        AddEvents.AddTriggersListener(GameObject_Badges, EPClick, Click_Badges);
+        AddEvents.AddTriggersListener(GameObject_Rank, EPClick, Click_Rank);
+        #endregion                    
 
         #region Learn
         Button_Material.onClick.AddListener(Material);
@@ -79,49 +78,108 @@ public class UI_Main : MonoBehaviour {
         #endregion
     }
 
+    #region Home PointerEnter Function
+    void Enter_Task(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是任務\n是本遊戲中要完成的目標\n點擊可開啟任務清單";
+    }
+    void Enter_Learn(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是學習\n含有教材和關卡\n點擊即可進入";
+    }
+    void Enter_Battle(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是戰鬥\n能以手中持有的卡牌與電腦進行對戰\n點擊即可進入";
+    }
+    void Enter_Guide(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是導覽\n可得知本遊戲的相關資訊\n點擊即可進入";
+    }
+    void Enter_Profile(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是狀態\n可得知玩家本身及持有物的狀態\n點擊即可進入";
+    }
+    void Enter_Shop(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是商店\n能以分數、金幣、水晶購買相關物品\n點擊即可進入";
+    }
+    void Enter_Deck(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是牌組\n可得知目前持有的卡牌資訊\n點擊即可進入";
+    }
+    void Enter_Badges(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是獎章\n可得知獎章資訊\n點擊即可進入";
+    }
+    void Enter_Rank(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是排行榜\n可得知玩家的排名狀況\n點擊即可進入";
+    }
+    void Enter_Task_Goal(BaseEventData data)
+    {
+        Text_Info.text = "這是本遊戲目標\n請完成所有任務";
+    }
+    #endregion
+
+    #region Home PointerExit
+    void Exit(BaseEventData data)
+    {
+        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+    }
+    #endregion
+
     #region Home PointerClick Function
-    public void Enter_Task(BaseEventData data)
+    public void Click_Task(BaseEventData data)
     {
         ok.Play();
-        text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
+        Text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
         ui_Task.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
     }
-    public void Enter_Learn(BaseEventData data)
+    public void Click_Learn(BaseEventData data)
     {
         ok.Play();
-        text_Info.text = "點擊教材可瀏覽本遊戲中的目標單字\n點擊關卡即可進入，並選擇要練習或挑戰";
+        Text_Info.text = "點擊教材可瀏覽本遊戲中的目標單字\n點擊關卡即可進入，並選擇要練習或挑戰";
         ui_Learn.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
     }
-    public void Enter_Battle(BaseEventData data)
+    public void Click_Battle(BaseEventData data)
     {
         ok.Play();
     }
-    public void Enter_Guide(BaseEventData data)
+    public void Click_Guide(BaseEventData data)
     {
         ok.Play();
     }
-    public void Enter_Profile(BaseEventData data)
+    public void Click_Profile(BaseEventData data)
     {
         ok.Play();
     }
-    public void Enter_Shop(BaseEventData data)
+    public void Click_Shop(BaseEventData data)
     {
         ok.Play();
     }
-    public void Enter_Deck(BaseEventData data)
+    public void Click_Deck(BaseEventData data)
     {
         ok.Play();
         SceneManager.LoadScene("Deck");
     }
-    public void Enter_Badges(BaseEventData data)
+    public void Click_Badges(BaseEventData data)
     {
         ok.Play();
     }
-    public void Enter_Rank(BaseEventData data)
+    public void Click_Rank(BaseEventData data)
     {
         ok.Play();
     }
@@ -144,7 +202,7 @@ public class UI_Main : MonoBehaviour {
         ui_Learn.SetActive(false);
         ui_Home.SetActive(true);
         ui_Task_Goal.SetActive(true);
-        text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
     }
     #endregion
 

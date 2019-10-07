@@ -36,26 +36,26 @@ public class UI_Material : MonoBehaviour {
         Vocabulary_Data.Vocabulary_Init();
 
         #region Material PointerEnter
-        AddEvents.AddTriggersListener(Direction[0], EPEnter, Material_PointerEnter.Up);
-        AddEvents.AddTriggersListener(Direction[1], EPEnter, Material_PointerEnter.Down);
-        AddEvents.AddTriggersListener(Direction[2], EPEnter, Material_PointerEnter.Left);
-        AddEvents.AddTriggersListener(Direction[3], EPEnter, Material_PointerEnter.Right);
-        AddEvents.AddTriggersListener(Voice, EPEnter, Material_PointerEnter.Voice);
+        AddEvents.AddTriggersListener(Direction[0], EPEnter, Enter_Up);
+        AddEvents.AddTriggersListener(Direction[1], EPEnter, Enter_Down);
+        AddEvents.AddTriggersListener(Direction[2], EPEnter, Enter_Left);
+        AddEvents.AddTriggersListener(Direction[3], EPEnter, Enter_Right);
+        AddEvents.AddTriggersListener(Voice, EPEnter, Enter_Voice);
         #endregion
 
         #region Material PointerExit
-        AddEvents.AddTriggersListener(Direction[0], EPExit, Material_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Direction[1], EPExit, Material_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Direction[2], EPExit, Material_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Direction[3], EPExit, Material_PointerExit.Exit);
-        AddEvents.AddTriggersListener(Voice, EPExit, Material_PointerExit.Exit);
+        AddEvents.AddTriggersListener(Direction[0], EPExit, Exit);
+        AddEvents.AddTriggersListener(Direction[1], EPExit, Exit);
+        AddEvents.AddTriggersListener(Direction[2], EPExit, Exit);
+        AddEvents.AddTriggersListener(Direction[3], EPExit, Exit);
+        AddEvents.AddTriggersListener(Voice, EPExit, Exit);
         #endregion
 
         #region Material PointerClick
-        AddEvents.AddTriggersListener(Direction[0], EPClick, Up);
-        AddEvents.AddTriggersListener(Direction[1], EPClick, Down);
-        AddEvents.AddTriggersListener(Direction[2], EPClick, Left);
-        AddEvents.AddTriggersListener(Direction[3], EPClick, Right);
+        AddEvents.AddTriggersListener(Direction[0], EPClick, Click_Up);
+        AddEvents.AddTriggersListener(Direction[1], EPClick, Click_Down);
+        AddEvents.AddTriggersListener(Direction[2], EPClick, Click_Left);
+        AddEvents.AddTriggersListener(Direction[3], EPClick, Click_Right);
         AddEvents.AddTriggersListener(Voice, EPClick, Play);
         #endregion
 
@@ -77,8 +77,38 @@ public class UI_Material : MonoBehaviour {
         ShowContent(No);
     }
 
-    #region PointerClick
-    void Right(BaseEventData data)
+    #region Material PointerEnter
+    void Enter_Up(BaseEventData data)
+    {
+        Text_Info.text = "上一頁";
+    }
+    void Enter_Down(BaseEventData data)
+    {
+        Text_Info.text = "下一頁";
+    }
+    void Enter_Left(BaseEventData data)
+    {
+        Text_Info.text = "上一個";
+    }
+    void Enter_Right(BaseEventData data)
+    {
+        Text_Info.text = "下一個";
+    }
+    void Enter_Voice(BaseEventData data)
+    {
+        Text_Info.text = "點擊即可播放音檔";
+    }
+    #endregion
+
+    #region Material PointerExit
+    void Exit(BaseEventData data)
+    {
+        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+    }
+    #endregion
+
+    #region Material PointerClick
+    void Click_Right(BaseEventData data)
     {
         if (No > 8 && ten == 10)
         {
@@ -98,7 +128,7 @@ public class UI_Material : MonoBehaviour {
         }
         ShowContent(No + ten);
     }
-    public void Left(BaseEventData data)
+    void Click_Left(BaseEventData data)
     {
         if (No < 1 && ten == 0)
         {
@@ -118,7 +148,7 @@ public class UI_Material : MonoBehaviour {
         }
         ShowContent(No + ten);
     }
-    public void Up(BaseEventData data)
+    void Click_Up(BaseEventData data)
     {
         if (ten == 0)
             ten = 10;
@@ -127,7 +157,7 @@ public class UI_Material : MonoBehaviour {
         ShowContent(No + ten);
         ChangeButtonText();
     }
-    public void Down(BaseEventData data)
+    void Click_Down(BaseEventData data)
     {
         if (ten == 10)
             ten = 0;

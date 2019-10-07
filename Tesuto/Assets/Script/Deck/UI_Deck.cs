@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class UI_Deck : MonoBehaviour {
 
     #region Variable 
-    private int CardClick = 0;
     #endregion
 
     #region Variable Events
@@ -30,6 +29,8 @@ public class UI_Deck : MonoBehaviour {
     //文字
     public Text Text_No, Text_Type, Text_Name, Text_Rarity, Text_ATK, Text_Effect,Text_Info;
     public Text Text_No_Content,Text_Type_Content, Text_Name_Content, Text_Rarity_Content, Text_ATK_Content, Text_Effect_Content;
+
+    public AudioSource ok;
     #endregion
 
     // Use this for initialization
@@ -92,24 +93,28 @@ public class UI_Deck : MonoBehaviour {
     #region VCSA
     void VCSA_V()
     {
+        ok.Play();
         ui_Vanguard.SetActive(true);
         ui_Center.SetActive(false);
         ui_Support.SetActive(false);
     }
     void VCSA_C()
     {
+        ok.Play();
         ui_Vanguard.SetActive(false);
         ui_Center.SetActive(true);
         ui_Support.SetActive(false);
     }
     void VCSA_S()
     {
+        ok.Play();
         ui_Vanguard.SetActive(false);
         ui_Center.SetActive(false);
         ui_Support.SetActive(true);
     }
     void VCSA_A()
     {
+        ok.Play();
         ui_Vanguard.SetActive(true);
         ui_Center.SetActive(true);
         ui_Support.SetActive(true);
@@ -122,38 +127,12 @@ public class UI_Deck : MonoBehaviour {
         for (int i = 0; i < 22; i++)
             Image_Card[i].color = new Color32(255, 255, 255, 255);
 
-        if (CardClick == 0)
-        {
-            Image_Card[n].color = new Color32(255, 0, 0, 255);
-            CardClick = 1;
+        Image_Card[n].color = new Color32(255, 0, 0, 255);
 
-            int card_status = new int();
-            card_status = Learner_Data.Learner_GetCard_Status(n);
-            if (card_status == 0)
-            {
-                Image_Show.sprite = Resources.Load("Image/Card/CardBack", typeof(Sprite)) as Sprite;
-                Text_No_Content.text = "???";
-                Text_Type_Content.text = "???";
-                Text_Name_Content.text = "???";
-                Text_Rarity_Content.text = "???";
-                Text_ATK_Content.text = "???";
-                Text_Effect_Content.text = "???";
-                return;
-            }
-            card_temp = Card_Data.Card_Get(n);
-            Image_Show.sprite = Resources.Load("Image/Card/" + card_temp.GetPicture(), typeof(Sprite)) as Sprite;
-
-            Text_No_Content.text = card_temp.GetNo();
-            Text_Type_Content.text = card_temp.GetCType();
-            Text_Name_Content.text = card_temp.GetName();
-            Text_Rarity_Content.text = card_temp.GetRarity();
-            Text_ATK_Content.text = card_temp.GetATK().ToString();
-            Text_Effect_Content.text = card_temp.GetEffect();
-        }
-        else if(CardClick == 1)
+        int card_status = new int();
+        card_status = Learner_Data.Learner_GetCard_Status(n);
+        if (card_status == 0)
         {
-            Image_Card[n].color = new Color32(255, 255, 255, 255);
-            CardClick = 0;
             Image_Show.sprite = Resources.Load("Image/Card/CardBack", typeof(Sprite)) as Sprite;
             Text_No_Content.text = "???";
             Text_Type_Content.text = "???";
@@ -161,11 +140,22 @@ public class UI_Deck : MonoBehaviour {
             Text_Rarity_Content.text = "???";
             Text_ATK_Content.text = "???";
             Text_Effect_Content.text = "???";
-        } 
+            return;
+        }
+        card_temp = Card_Data.Card_Get(n);
+        Image_Show.sprite = Resources.Load("Image/Card/" + card_temp.GetPicture(), typeof(Sprite)) as Sprite;
+
+        Text_No_Content.text = card_temp.GetNo();
+        Text_Type_Content.text = card_temp.GetCType();
+        Text_Name_Content.text = card_temp.GetName();
+        Text_Rarity_Content.text = card_temp.GetRarity();
+        Text_ATK_Content.text = card_temp.GetATK().ToString();
+        Text_Effect_Content.text = card_temp.GetEffect();
     }
 
     void Back()
     {
+        ok.Play();
         SceneManager.LoadScene("Main");
     }
 

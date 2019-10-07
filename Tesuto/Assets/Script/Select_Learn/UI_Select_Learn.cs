@@ -40,7 +40,7 @@ public class UI_Select_Learn : MonoBehaviour {
     #endregion
 
     #region AudioSource
-    public AudioSource ok, cancel;
+    public AudioSource ok, cancel,choose;
     #endregion
 
 
@@ -56,13 +56,13 @@ public class UI_Select_Learn : MonoBehaviour {
         }
 
         #region Select_Learn PointerEnter
-        AddEvents.AddTriggersListener(GameObject_Practice, EPEnter, Select_Learn_PointerEnter.Practice);
-        AddEvents.AddTriggersListener(GameObject_Challenge, EPEnter, Select_Learn_PointerEnter.Challenge);
+        AddEvents.AddTriggersListener(GameObject_Practice, EPEnter, Enter_Practice);
+        AddEvents.AddTriggersListener(GameObject_Challenge, EPEnter, Enter_Challenge);
         #endregion
 
         #region Select_Learn PointerExit
-        AddEvents.AddTriggersListener(GameObject_Practice, EPExit, Select_Learn_PointerExit.Exit);
-        AddEvents.AddTriggersListener(GameObject_Challenge, EPExit, Select_Learn_PointerExit.Exit);
+        AddEvents.AddTriggersListener(GameObject_Practice, EPExit, Exit);
+        AddEvents.AddTriggersListener(GameObject_Challenge, EPExit, Exit);
         #endregion
 
         #region Select_Learn PointerClick
@@ -75,8 +75,8 @@ public class UI_Select_Learn : MonoBehaviour {
         AddEvents.AddTriggersListener(GameObject_Level[6], EPClick, Learn_6);
         #endregion
 
-        Button_Practice.onClick.AddListener(Practice);
-        Button_Challenge.onClick.AddListener(Challenge);
+        Button_Practice.onClick.AddListener(Click_Practice);
+        Button_Challenge.onClick.AddListener(Click_Challenge);
 
         Button_Back.onClick.AddListener(Back);
         Button_Start.onClick.AddListener(Play);
@@ -84,6 +84,26 @@ public class UI_Select_Learn : MonoBehaviour {
         Button_Select_Cancel.onClick.AddListener(Select_Cancel);
         Button_Content_Cancel.onClick.AddListener(Content_Cancel);
     }
+
+    #region Select_Learn PointerEnter
+    void Enter_Practice(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是練習\n點擊可開啟所有關卡來練習";
+    }
+    void Enter_Challenge(BaseEventData data)
+    {
+        choose.Play();
+        Text_Info.text = "這是挑戰\n點擊可開啟接下的任務來挑戰";
+    }
+    #endregion
+
+    #region Select_Learn PointerExit
+    void Exit(BaseEventData data)
+    {
+        Text_Info.text = "請選擇要練習或挑戰\n";
+    }
+    #endregion
 
     #region Task PointerClick Function
     public void Learn_0(BaseEventData data)
@@ -191,7 +211,7 @@ public class UI_Select_Learn : MonoBehaviour {
             Question_Data.Question_Init(choose_n, n1, n2, 0);
         SceneManager.LoadScene("Level");
     }
-    void Practice()
+    void Click_Practice()
     {
         ui_Content.SetActive(false);
         ok.Play();
@@ -205,7 +225,7 @@ public class UI_Select_Learn : MonoBehaviour {
         }
     }
 
-    void Challenge()
+    void Click_Challenge()
     {
         ui_Content.SetActive(false);
         ok.Play();
