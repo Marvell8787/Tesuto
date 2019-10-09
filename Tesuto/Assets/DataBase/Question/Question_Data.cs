@@ -19,7 +19,7 @@ static class Question_Data{
     private static int Qtotal;
 
 
-    public static void Question_Init(int _Level,int n1,int n2,int _challenge) //題型 第n1題到第n2題 是否挑戰
+    public static void Question_Init(int _Level,int n1,int n2,int n3,int _challenge) //題型 第n1題到第n2題 共n3題 是否挑戰
     {
         Random.InitState(System.Guid.NewGuid().GetHashCode());
         Vocabulary_Data.Vocabulary_Init(); //之後移到Login
@@ -29,7 +29,7 @@ static class Question_Data{
         {
             vocabulary_temp[i] = Vocabulary_Data.Vocabulary_Get(i);
         }
-        Question_Set(_Level, n1, n2);
+        Question_Set(_Level, n1, n2,n3);
     }
     public static Question_Class Question_Get(int n)
     {
@@ -67,13 +67,24 @@ static class Question_Data{
                             break;
                         }
                     }
-                    else //中文
+                    else if(_Level > 2 && _Level <= 5)//題目 英文 答案 中文
                     {
                         if (Vocabulary_Bank.Vocabulary_E_Name[rand[c]] == (question_temp[QNum].GetQuestion()))
                         { c++; continue; }
                         else
                         {
                             ChangeButton_Ans(Vocabulary_Bank.Vocabulary_C_Name[rand[c]], i);
+                            c++;
+                            break;
+                        }
+                    }
+                    else if (_Level ==7)//題目 中文 答案 英文
+                    {
+                        if (Vocabulary_Bank.Vocabulary_C_Name[rand[c]] == (question_temp[QNum].GetQuestion()))
+                        { c++; continue; }
+                        else
+                        {
+                            ChangeButton_Ans(Vocabulary_Bank.Vocabulary_E_Name[rand[c]], i);
                             c++;
                             break;
                         }
@@ -119,7 +130,7 @@ static class Question_Data{
     {
         question_temp[c].ChangeFeedBack(s);
     }
-    private static void Question_Set(int _Level,int n1,int n2) //Level=題型 第n1題到第n2題
+    private static void Question_Set(int _Level,int n1,int n2,int n3) //Level=題型 第n1題到第n2題
     {
         for (int i = n1 - 1; i < n2; i++)
         {
@@ -135,7 +146,7 @@ static class Question_Data{
                     Question[i-10] = vocabulary_temp[i].GetE_Name();
                     Answer_r_Content[i-10] = vocabulary_temp[i].GetC_Name();
                 }
-                else if (_Level > 5)//中翻英
+                else if (_Level > 5)//中翻英 6 7 題目中文 7戰鬥用
                 {
                     Question[i-10] = vocabulary_temp[i].GetC_Name();
                     Answer_r_Content[i-10] = vocabulary_temp[i].GetE_Name();
@@ -153,20 +164,19 @@ static class Question_Data{
                     Question[i] = vocabulary_temp[i].GetE_Name();
                     Answer_r_Content[i] = vocabulary_temp[i].GetC_Name();
                 }
-                else if (_Level > 5)//中翻英
+                else if (_Level > 5)//中翻英 6 7 題目中文 7戰鬥用
                 {
                     Question[i] = vocabulary_temp[i].GetC_Name();
                     Answer_r_Content[i] = vocabulary_temp[i].GetE_Name();
                 }
             }
         }
-        QaARandomSequence(n2 - n1 + 1);
+        QaARandomSequence(n3);
 
-        for (int i = 0; i < n2 - n1 + 1; i++)
-        {
+        for (int i = 0; i < n3; i++)
             question_temp[i] = new Question_Class(i + 1, Question[i], "", Answer_r_Content[i], "", "", "");
-        }
-        Qtotal = n2 - n1 + 1;
+
+        Qtotal = n3;
     }
 
     private static int[] GetRandomSequence(int total)

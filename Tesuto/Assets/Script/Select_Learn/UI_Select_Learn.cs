@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class UI_Select_Learn : MonoBehaviour {
@@ -207,9 +206,9 @@ public class UI_Select_Learn : MonoBehaviour {
     {
         ok.Play();
         if (choose_s == "challenge")
-            Question_Data.Question_Init(choose_n,n1,n2,1);
+            Question_Data.Question_Init(choose_n,n1,n2, n2-n1+1 ,1);
         else
-            Question_Data.Question_Init(choose_n, n1, n2, 0);
+            Question_Data.Question_Init(choose_n, n1, n2, n2 - n1 + 1, 0);
         SceneManager.LoadScene("Level");
     }
     void Click_Practice()

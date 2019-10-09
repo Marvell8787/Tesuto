@@ -160,12 +160,21 @@ public class UI_Select_Battle : MonoBehaviour {
     }
     void Play() //開始關卡
     {
+
+        Battle_Class battle_temp = new Battle_Class();
+        battle_temp=Battle_Data.Battle_Get(choose_n);
+        int n3 = int.Parse(battle_temp.GetTime());
         ok.Play();
         if (choose_s == "challenge")
-            Question_Data.Question_Init(choose_n, n1, n2, 1);
+            Question_Data.Question_Init(7, n1, n2,n3, 1); // Question_Data 6指向戰鬥用的問題
         else
-            Question_Data.Question_Init(choose_n, n1, n2, 0);
-        //SceneManager.LoadScene("Level");
+            Question_Data.Question_Init(7, n1, n2, n3,0);
+        Player_Data.Player_Init(choose_n);
+        Player_Data.Shuffle(0);
+        Player_Data.Shuffle(1);
+        Player_Data.Deal();
+        SceneManager.LoadScene("Battle");
+
     }
     void Click_Practice()
     {

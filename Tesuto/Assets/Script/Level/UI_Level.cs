@@ -18,8 +18,6 @@ public class UI_Level : MonoBehaviour {
     private string choose_Ans = "";
     private string choose_Ans_Content = "";
 
-    private int Practice_Flag = 0; //0:無 1:失敗 2:成功
-    private int Challenge_Flag = 0; //0:無 1:失敗 2:成功
 
     private int PageUP = 1;
     private int PageDown = 4;
@@ -168,6 +166,7 @@ public class UI_Level : MonoBehaviour {
         CheckAns();
     }
     #endregion
+
     void CheckAns(string s = "")
     {
         Question_Class question_temp = new Question_Class();
@@ -246,13 +245,11 @@ public class UI_Level : MonoBehaviour {
                 task_temp = Task_Data.Learn_Get(Level);
                 if (Score >= Task_Bank.Learn_Request_Score[Level])//成功
                 {
-                    Challenge_Flag = 2;
                     task_temp.ChangeStatus(3);
                     Flag.text = "挑戰成功!";
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
-                    Challenge_Flag = 1;
                     task_temp.ChangeStatus(3);
                     Flag.text = "挑戰失敗!";
                 }
@@ -262,12 +259,10 @@ public class UI_Level : MonoBehaviour {
             {
                 if (Score > 59)//成功
                 {
-                    Practice_Flag = 2;
                     Flag.text = "練習成功!";
                 }
                 else if (Score < 60) //失敗
                 {
-                    Practice_Flag = 1;
                     Flag.text = "練習失敗!";
                 }
                 if (Learner_Data.Learner_GetLearn_Status(Level) == 0)
@@ -470,13 +465,11 @@ public class UI_Level : MonoBehaviour {
         Question_Class[] question_temp = new Question_Class[20];
         int n = Page;
         for (int i = 0; i < 20; i++)
-        {
             question_temp[i] = new Question_Class(0, "", "", "", "", "", "");
-        }
+
         for (int i = 0; i < Question_total; i++)
-        {
             question_temp[i] = Question_Data.Question_Get(i);
-        }
+
         for (int i = 0; i < 5; i++)
         {
             A_S_QNum[i].text = question_temp[i + n].GetQuestionNum().ToString();
