@@ -31,6 +31,15 @@ public class UI_Main : MonoBehaviour {
     public Button Button_Material,Button_Level,Button_Cancel;
     #endregion
 
+    #region Rank
+    public GameObject ui_Rank;
+    public Text Text_No_Tile, Text_Num_Tile, Text_NickName_Tile;
+    public Text[] Text_No = new Text[6];
+    public Text[] Text_Num = new Text[6];
+    public Text[] Text_NickName = new Text[6];
+    public Button Button_Rank_Cancel;
+    #endregion
+
     // Use this for initialization
     void Start () {
         #region Home PointerEnter
@@ -75,6 +84,13 @@ public class UI_Main : MonoBehaviour {
         Button_Material.onClick.AddListener(Material);
         Button_Level.onClick.AddListener(Level);
         Button_Cancel.onClick.AddListener(Learn_Cancel);
+        #endregion
+
+        #region Badges
+        #endregion
+
+        #region Rank
+        Button_Rank_Cancel.onClick.AddListener(Rank_Cancel);
         #endregion
     }
 
@@ -170,6 +186,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Shop(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Shop"); 
     }
     public void Click_Deck(BaseEventData data)
     {
@@ -183,6 +200,10 @@ public class UI_Main : MonoBehaviour {
     public void Click_Rank(BaseEventData data)
     {
         ok.Play();
+        Text_Info.text = "移至圖像可查看資訊/n點擊圖像可顯示該類前五名";
+        ui_Rank.SetActive(true);
+        ui_Home.SetActive(false);
+        ui_Task_Goal.SetActive(false);
     }
     #endregion
 
@@ -207,4 +228,17 @@ public class UI_Main : MonoBehaviour {
     }
     #endregion
 
+    #region Badges
+    #endregion
+
+    #region Rank
+    void Rank_Cancel()
+    {
+        cancel.Play();
+        ui_Rank.SetActive(false);
+        ui_Home.SetActive(true);
+        ui_Task_Goal.SetActive(true);
+        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+    }
+    #endregion
 }
