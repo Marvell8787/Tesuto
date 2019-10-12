@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
 public class UI_Main : MonoBehaviour {
     
     #region Variable Events
