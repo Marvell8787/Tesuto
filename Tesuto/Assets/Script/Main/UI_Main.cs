@@ -41,6 +41,7 @@ public class UI_Main : MonoBehaviour {
     #endregion
 
     public GameObject ui_Badges;
+    public GameObject ui_Guide;
 
     // Use this for initialization
     void Start () {
@@ -177,10 +178,12 @@ public class UI_Main : MonoBehaviour {
     public void Click_Guide(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Guide");
     }
     public void Click_Profile(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Profile");
     }
     public void Click_Shop(BaseEventData data)
     {
