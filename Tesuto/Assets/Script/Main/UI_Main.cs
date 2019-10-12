@@ -40,6 +40,8 @@ public class UI_Main : MonoBehaviour {
     public Button Button_Rank_Cancel;
     #endregion
 
+    public GameObject ui_Badges;
+
     // Use this for initialization
     void Start () {
         #region Home PointerEnter
@@ -84,9 +86,6 @@ public class UI_Main : MonoBehaviour {
         Button_Material.onClick.AddListener(Material);
         Button_Level.onClick.AddListener(Level);
         Button_Cancel.onClick.AddListener(Learn_Cancel);
-        #endregion
-
-        #region Badges
         #endregion
 
         #region Rank
@@ -196,6 +195,10 @@ public class UI_Main : MonoBehaviour {
     public void Click_Badges(BaseEventData data)
     {
         ok.Play();
+        Text_Info.text = "移至圖像可查看資訊/n點擊下方箭頭可換頁";
+        ui_Badges.SetActive(true);
+        ui_Home.SetActive(false);
+        ui_Task_Goal.SetActive(false);
     }
     public void Click_Rank(BaseEventData data)
     {
@@ -226,9 +229,6 @@ public class UI_Main : MonoBehaviour {
         ui_Task_Goal.SetActive(true);
         Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
     }
-    #endregion
-
-    #region Badges
     #endregion
 
     #region Rank
