@@ -9,7 +9,9 @@ static class Learner_Data{
     private static int Task_Fail = 0; //失敗數量
     //Learn
     private static int Learn_Finish = 0; //完成數量
+    private static int Learn_Num = 0; //練習次數
     private static int Learn_Succes = 0; //成功數量
+    private static int Learn_Fail = 0; //失敗數量
     private static int[] Learn_Status = new int[7] { 0, 0, 0, 0, 0, 0, 0}; //0:無 1:有
 
     //Battle
@@ -29,18 +31,19 @@ static class Learner_Data{
     //Badges
     private static int[] Badges_Status = new int[18] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
     //test private static int[] Badges_Status = new int[18] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
-
+    private static int[] Badges_GetStatus = new int[3] { 0, 0, 0}; //任務 學習 戰鬥
     private static int Badges_Num = 0; //獎章數量
 
     //Card
     private static int Cards_Num = 10; //卡片數量
+    private static int[] Cards_GetStatus = new int[3] { 9, 1, 0 }; //卡牌種類持有狀態 前鋒 中鋒 支援
     private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 }; //卡片持有狀態 0:無 1~22:有
     //Punishment
     //Point
     private static int[] Points_Status = new int[3] { 3, 3, 3}; //點數持有狀態 Task Learn Battle
     private static int Points_Num = 9; //點數
     //Mistakes
-    private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warn YC RC
+    private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warning YC RC
     private static int Mistakes_Num = 0; //失誤
 
     public static void Learner_Add(string s,int n) // s=想要加的東西  n=數字(可+ -)   
@@ -52,7 +55,10 @@ static class Learner_Data{
             case "Task_Succes":Task_Succes += n;break;
             case "Task_Fail": Task_Fail += n; break;
             //Learn
+            case "Learn_Num": Learn_Num += n; break;
             case "Learn_Finish": Learn_Finish += n; break;
+            case "Learn_Succes": Learn_Succes += n; break;
+            case "Learn_Fail": Learn_Fail += n; break;
             //Battle
             case "Battle_Num": Battle_Num += n; break;
             case "Battle_Win": Battle_Win += n; break;
@@ -145,6 +151,15 @@ static class Learner_Data{
         Learn_Status[n] = 1;
     }
 
+    public static int Learner_GetCardsGet_Status(int n)
+    {
+        return Cards_GetStatus[n];
+    }
+    public static void Learner_ChangeCards_Status(int n) //Cards
+    {
+        Cards_GetStatus[n] += 1;
+    }
+
     public static int Learner_GetCard_Status(int n)
     {
             return Card_Status[n];
@@ -163,6 +178,16 @@ static class Learner_Data{
     {
         Badges_Status[n] = 1;
     }
+
+    public static int Learner_GetBadges_GetStatus(int n)
+    {
+        return Badges_GetStatus[n];
+    }
+    public static void Learner_ChangeBadges_GetStatus(int n) //Badges
+    {
+        Badges_GetStatus[n] += 1;
+    }
+
     private static void CheckBadges(string s)
     {
         switch (s)

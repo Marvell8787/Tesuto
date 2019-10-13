@@ -102,7 +102,6 @@ public class UI_Battle : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Init
-        Card_Data.Card_Init();
         Player = Player_Data.Player_Get(0);
         Enemy = Player_Data.Player_Get(1);
 
@@ -589,22 +588,19 @@ public class UI_Battle : MonoBehaviour {
         }
         if (Center_B > 14 && Center_B < 19)
         {
+            Text_ATK_B_Num.text = Text_ATK_B_Num.text + " + " + (card_temp[Center_B].GetATK());
             switch (Center_B)
             {
                 case 15:
-                    Text_ATK_B_Num.text = Text_ATK_B_Num.text + " + " + (card_temp[Center_B].GetATK());
                     ATK_B += 1;
                     break;
                 case 16:
-                    Text_ATK_B_Num.text = Text_ATK_B_Num.text + " + " + (card_temp[Center_B].GetATK());
                     ATK_B += 2;
                     break;
                 case 17:
-                    Text_ATK_B_Num.text = (card_temp[Center_B].GetATK()).ToString();
                     ATK_B += 3;
                     break;
                 case 18:
-                    Text_ATK_B_Num.text = (card_temp[Center_B].GetATK()).ToString();
                     ATK_B += 4;
                     break;
                 default:

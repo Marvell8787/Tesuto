@@ -66,8 +66,6 @@ public class UI_Deck : MonoBehaviour {
         AddEvents.AddTriggersListener(GameObject_Card[21], EPClick, Card_21);
         #endregion
 
-        Card_Data.Card_Init();
-
         Card_Class[] card_temp = new Card_Class[22];
         int[] card_status = new int[22];
 

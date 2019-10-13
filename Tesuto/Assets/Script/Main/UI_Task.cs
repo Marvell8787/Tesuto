@@ -39,7 +39,6 @@ public class UI_Task : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Task_Data.Task_Init(); //之後要移到Login
         for(int i = 0; i < 7; i++)
         {
             Text_Task[i].text = "";

@@ -62,6 +62,10 @@ public class UI_Login : MonoBehaviour {
     void Login()
     {
         ok.Play();
+        Task_Data.Task_Init(); //之後要移到Login
+        Card_Data.Card_Init();
+        Vocabulary_Data.Vocabulary_Init(); //之後移到Login
+
         SceneManager.LoadScene("Main");
     }
 

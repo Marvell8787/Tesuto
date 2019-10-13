@@ -125,7 +125,7 @@ public class UI_Select_Battle : MonoBehaviour {
             choose_n = 1;
             ShowContent(1);
             ui_Content.SetActive(true);
-            n1 = 5; n2 = 15;
+            n1 = 1; n2 = 15;
         }
     }
     void Battle_2(BaseEventData data)
@@ -136,7 +136,7 @@ public class UI_Select_Battle : MonoBehaviour {
             choose_n = 2;
             ShowContent(2);
             ui_Content.SetActive(true);
-            n1 = 5; n2 = 20;
+            n1 = 1; n2 = 20;
         }
     }
     #endregion
@@ -166,7 +166,7 @@ public class UI_Select_Battle : MonoBehaviour {
         int n3 = int.Parse(battle_temp.GetTime());
         ok.Play();
         if (choose_s == "challenge")
-            Question_Data.Question_Init(7, n1, n2,n3, 1); // Question_Data 6指向戰鬥用的問題
+            Question_Data.Question_Init(7, n1, n2, n3, 1); // Question_Data 7指向戰鬥用的問題
         else
             Question_Data.Question_Init(7, n1, n2, n3,0);
         Player_Data.Player_Init(choose_n);

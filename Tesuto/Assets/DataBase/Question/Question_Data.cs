@@ -22,7 +22,6 @@ static class Question_Data{
     public static void Question_Init(int _Level,int n1,int n2,int n3,int _challenge) //題型 第n1題到第n2題 共n3題 是否挑戰
     {
         Random.InitState(System.Guid.NewGuid().GetHashCode());
-        Vocabulary_Data.Vocabulary_Init(); //之後移到Login
         Level = _Level;
         challenge = _challenge;
         for (int i = 0; i < Vocabulary_Bank.Vocabulary_Num; i++)
@@ -130,9 +129,9 @@ static class Question_Data{
     {
         question_temp[c].ChangeFeedBack(s);
     }
-    private static void Question_Set(int _Level,int n1,int n2,int n3) //Level=題型 第n1題到第n2題
+    private static void Question_Set(int _Level,int n1,int n2,int n3) //Level=題型 第n1題到第n2題 共n3題
     {
-        for (int i = n1 - 1; i < n2; i++)
+        for (int i = n1 - 1; i < n3; i++)
         {
             if (n1 > 10)
             {

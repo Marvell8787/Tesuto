@@ -33,8 +33,6 @@ public class UI_Material : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        Vocabulary_Data.Vocabulary_Init();
-
         #region Material PointerEnter
         AddEvents.AddTriggersListener(Direction[0], EPEnter, Enter_Up);
         AddEvents.AddTriggersListener(Direction[1], EPEnter, Enter_Down);
