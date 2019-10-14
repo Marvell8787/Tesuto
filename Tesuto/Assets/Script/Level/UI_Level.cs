@@ -246,6 +246,7 @@ public class UI_Level : MonoBehaviour {
                 task_temp = Task_Data.Learn_Get(Level);
                 if (Score >= Task_Bank.Learn_Request_Score[Level])//成功
                 {
+                    Image_Item.sprite = Resources.Load("Image/Main/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(3);
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "挑戰成功!";
@@ -256,6 +257,7 @@ public class UI_Level : MonoBehaviour {
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
+                    Image_Item.sprite = Resources.Load("Image/Main/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(3);
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "挑戰失敗!";
@@ -273,7 +275,7 @@ public class UI_Level : MonoBehaviour {
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
                     Flag.text = "練習成功!";
                     Mechanism_Data.Punishment("Learn", Level);
-                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString();
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Coin").ToString();
 
                     if (Learner_Data.Learner_GetLearn_Status(Level) == 0)
                     {
@@ -287,7 +289,7 @@ public class UI_Level : MonoBehaviour {
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
                     Flag.text = "練習失敗!";
                     Mechanism_Data.Punishment("Learn", Level);
-                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString();
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Coin").ToString();
                     Learner_Data.Learner_Add("Learn_Fail", 1);
                 }
 
