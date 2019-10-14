@@ -61,7 +61,8 @@ public class UI_Level : MonoBehaviour {
     #endregion
 
     #region Settlement
-    public Text S_QNum, S_Question, S_Choose, S_Answer, S_Feedback, S_PageUp, S_PageDown, Coin,Flag;
+    public Image Image_Item;
+    public Text S_QNum, S_Question, S_Choose, S_Answer, S_Feedback, S_PageUp, S_PageDown, Text_ItemContent, Flag;
     public Text[] A_S_QNum = new Text[5];
     public Text[] A_S_Question = new Text[5];
     public Text[] A_S_Answer = new Text[5];
@@ -246,12 +247,22 @@ public class UI_Level : MonoBehaviour {
                 if (Score >= Task_Bank.Learn_Request_Score[Level])//成功
                 {
                     task_temp.ChangeStatus(3);
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "挑戰成功!";
+                    Mechanism_Data.Reward("Task", Level);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Learner_Data.Learner_Add("Task_Succes", 1);
+                    Learner_Data.Learner_Add("Task_Finish", 1);
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
                     task_temp.ChangeStatus(3);
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "挑戰失敗!";
+                    Mechanism_Data.Punishment("Task", Level);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Learner_Data.Learner_Add("Task_Fail", 1);
+                    Learner_Data.Learner_Add("Task_Finish", 1);
                 }
 
             }
@@ -259,18 +270,27 @@ public class UI_Level : MonoBehaviour {
             {
                 if (Score > 59)//成功
                 {
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
                     Flag.text = "練習成功!";
+                    Mechanism_Data.Punishment("Learn", Level);
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString();
+
+                    if (Learner_Data.Learner_GetLearn_Status(Level) == 0)
+                    {
+                        Learner_Data.Learner_ChangeLearn_Status(Level);
+                        Learner_Data.Learner_Add("Learn_Finish", 1);
+                    }
+                    Learner_Data.Learner_Add("Learn_Succes", 1);
                 }
                 else if (Score < 60) //失敗
                 {
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
                     Flag.text = "練習失敗!";
+                    Mechanism_Data.Punishment("Learn", Level);
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString();
+                    Learner_Data.Learner_Add("Learn_Fail", 1);
                 }
-                if (Learner_Data.Learner_GetLearn_Status(Level) == 0)
-                {
-                    Learner_Data.Learner_ChangeLearn_Status(Level);
-                    Learner_Data.Learner_Add("Learn_Finish", 1);
-                }
-                Learner_Data.Learner_Add("Learn_Succes", 1);
+
             }
             //開始結算
             //頁面初始化

@@ -24,7 +24,7 @@ static class Learner_Data{
     private static int Score = 100; //分數
     private static int Score_Highest = 100; //分數高點
     private static int Coin = 200; //金幣持有
-    private static int Coin_Total = 200; //金幣總數
+    private static int Coin_Highest = 200; //金幣高點
     private static int Crystal = 10; //水晶
     private static int Crystal_Highest = 10; //水晶高數
     //Reward
@@ -71,7 +71,7 @@ static class Learner_Data{
             case "Crystal": Crystal += n; if (Crystal > Crystal_Highest) Crystal_Highest = Crystal; break;
             //Score_Highest Crystal_Highest 是指定
             case "Score_Highest": Score_Highest = n; break;
-            case "Coin_Total": Coin_Total += n; break;
+            case "Coin_Highest": Coin_Highest += n; break;
             case "Crystal_Highest": Crystal_Highest = n; break;
             //Reward
             case "Badges_Num": Badges_Num += n; break;
@@ -220,7 +220,7 @@ static class Learner_Data{
                     Badges_Status[8] = 1;
                 break;
             //Score_Highest Crystal_Highest 是指定
-            case "Score":
+            case "Score_Highest":
                 if (Score_Highest > 149 && Score_Highest < 200)
                     Badges_Status[9] = 1;
                 else if (Score_Highest > 199 && Score_Highest < 250)
@@ -228,15 +228,15 @@ static class Learner_Data{
                 else if (Score_Highest > 249)
                     Badges_Status[11] = 1;
                 break;
-            case "Coin_Total":
-                if (Coin_Total > 199 && Coin_Total < 400)
+            case "Coin_Highest":
+                if (Coin_Highest > 199 && Coin_Highest < 400)
                     Badges_Status[12] = 1;
-                else if (Coin_Total > 399 && Coin_Total < 600)
+                else if (Coin_Highest > 399 && Coin_Highest < 600)
                     Badges_Status[13] = 1;
-                else if (Coin_Total > 599)
+                else if (Coin_Highest > 599)
                     Badges_Status[14] = 1;
                 break;
-            case "Crystal":
+            case "Crystal_Highest":
                 if (Crystal_Highest > 149 && Crystal_Highest < 250)
                     Badges_Status[15] = 1;
                 else if (Crystal_Highest > 249 && Crystal_Highest < 400)
@@ -257,6 +257,7 @@ static class Learner_Data{
     public static void Learner_ChangePoints_Status(int n) //Points
     {
         Points_Status[n] -= 1;
+        Points_Num--;
         CheckPoints("Points_Num");
     }
     private static void CheckPoints(string s)
@@ -266,15 +267,15 @@ static class Learner_Data{
             case "Points_Num":
                 if (Points_Status[0] == 0)
                 {
-                    //關閉任務功能
+                    Score = 0;
                 }
                 else if (Points_Status[1]== 0)
                 {
-                    //關閉學習功能
+                    Coin = 0;
                 }
                 else if (Points_Status[2] == 0)
                 {
-                    //關閉戰鬥功能
+                    Crystal = 0;
                 }
                 break;
             default:
@@ -289,6 +290,7 @@ static class Learner_Data{
     public static void Learner_ChangeMistakes_Status(int n) //Mistakes
     {
         Mistakes_Status[n] += 1;
+        Mistakes_Num++;
         CheckMistakes("Mistakes_Num");
     }
     private static void CheckMistakes(string s)
@@ -306,7 +308,7 @@ static class Learner_Data{
                 }
                 if (Mistakes_Status[2] > 0)
                 {
-                    //關閉所有輔助工具
+                    //懲罰+倍
                 }
                 break;
             default:

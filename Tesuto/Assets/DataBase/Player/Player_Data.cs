@@ -7,6 +7,7 @@ static class Player_Data{
 
     private static Player_Class[] Player = new Player_Class[2];  // 0:自己 1:敵人
     private static Card_Class[] card_temp = new Card_Class[22];
+    private static int hard = 10;
     public static void Player_Init(int difficult)
     {
         Random.InitState(System.Guid.NewGuid().GetHashCode());
@@ -14,7 +15,7 @@ static class Player_Data{
         {
             card_temp[i] = Card_Data.Card_Get(i);
         }
-
+        hard = difficult;
         //Debug.Log(Learner_Data.Learner_GetData("Cards_Num").ToString());
         Player[0] = new Player_Class(20, Learner_Data.Learner_GetData("Cards_Num"),0,5); 
 
@@ -91,6 +92,10 @@ static class Player_Data{
     public static Player_Class Player_Get(int n)
     {
         return Player[n];
+    }
+    public static int hardGet()
+    {
+        return hard;
     }
     public static void Deal() //發牌
     {

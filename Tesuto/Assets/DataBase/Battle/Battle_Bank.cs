@@ -26,4 +26,8 @@ static class Battle_Bank{
     public static string[] C_Battle_Punishment_1 = new string[3] { "無", "無", "無" };
     public static string[] E_Battle_Punishment_0 = new string[3] { "Crystal -20", "Crystal -100", "Crystal -250" };
     public static string[] E_Battle_Punishment_1 = new string[3] { "None", "None", "None" };
+
+    //獎懲 int
+    public static int[] Battle_Reward = new int[3] { 10, 50, 200 };
+    public static int[] Battle_Punishment = new int[3] { -20, -100, -250 };
 }

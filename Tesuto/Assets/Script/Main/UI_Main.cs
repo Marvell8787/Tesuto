@@ -17,7 +17,7 @@ public class UI_Main : MonoBehaviour {
     public GameObject GameObject_Task, GameObject_Learn, GameObject_Battle, GameObject_Guide, GameObject_Profile, GameObject_Deck, GameObject_Badges, GameObject_Rank, GameObject_Shop;
     public GameObject GameObject_Task_Goal;
     public AudioSource ok, cancel,choose;
-    public Text Text_Info;
+    public Text Text_Info, Text_Task_Content;
     #endregion
 
     #region Task 
@@ -90,6 +90,8 @@ public class UI_Main : MonoBehaviour {
         #region Rank
         Button_Rank_Cancel.onClick.AddListener(Rank_Cancel);
         #endregion
+
+        Text_Task_Content.text = Learner_Data.Learner_GetData("Task_Finish").ToString() + " / 10";
     }
 
     #region Home PointerEnter Function

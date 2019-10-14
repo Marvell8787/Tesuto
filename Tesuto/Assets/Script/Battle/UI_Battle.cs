@@ -80,7 +80,8 @@ public class UI_Battle : MonoBehaviour {
     #endregion
 
     #region Battle Settlement
-    public Text S_QNum, S_Question, S_Choose, S_Answer, S_Feedback, S_PageUp, S_PageDown, Coin, Flag;
+    public Image Image_Item;
+    public Text S_QNum, S_Question, S_Choose, S_Answer, S_Feedback, S_PageUp, S_PageDown, Text_ItemContent, Flag;
     public Text[] A_S_QNum = new Text[5];
     public Text[] A_S_Question = new Text[5];
     public Text[] A_S_Answer = new Text[5];
@@ -97,7 +98,7 @@ public class UI_Battle : MonoBehaviour {
     public Button Button_Next;
     public Text Text_Next;
 
-
+    public AudioSource ok,PageTurning;
 
     // Use this for initialization
     void Start () {
@@ -626,12 +627,15 @@ public class UI_Battle : MonoBehaviour {
         {
             case 19:
                 Player.ChangeLP(Player.GetLP() + 2);
+                Text_Message.text = "我方恢復 2點 LP";
                 break;
             case 20:
                 Player.ChangeLP(Player.GetLP() + 3);
+                Text_Message.text = "我方恢復 3點 LP";
                 break;
             case 21:
                 Player.ChangeLP(Player.GetLP() + 5);
+                Text_Message.text = "我方恢復 5點 LP";
                 break;
             default:
                 break;
@@ -640,12 +644,15 @@ public class UI_Battle : MonoBehaviour {
         {
             case 19:
                 Enemy.ChangeLP(Enemy.GetLP() + 2);
+                Text_Message.text = "敵方恢復 2點 LP";
                 break;
             case 20:
                 Enemy.ChangeLP(Enemy.GetLP() + 3);
+                Text_Message.text = "敵方恢復 3點 LP";
                 break;
             case 21:
                 Enemy.ChangeLP(Enemy.GetLP() + 5);
+                Text_Message.text = "敵方恢復 5點 LP";
                 break;
             default:
                 break;
@@ -660,10 +667,10 @@ public class UI_Battle : MonoBehaviour {
             switch (System_Setting.Language)
             {
                 case 0:
-                    Text_Message.text = "敵方LP - " + (aatk - batk);
+                    Text_Message.text += "敵方LP - " + (aatk - batk);
                     break;
                 case 1:
-                    Text_Message.text = "Com LP - " + (aatk - batk);
+                    Text_Message.text += "Com LP - " + (aatk - batk);
 
                     break;
                 default:
@@ -676,10 +683,10 @@ public class UI_Battle : MonoBehaviour {
             switch (System_Setting.Language)
             {
                 case 0:
-                    Text_Message.text = "我方LP - " + (batk - aatk);
+                    Text_Message.text += "我方LP - " + (batk - aatk);
                     break;
                 case 1:
-                    Text_Message.text = "Player LP - " + (batk - aatk);
+                    Text_Message.text += "Player LP - " + (batk - aatk);
                     break;
                 default:
                     break;
@@ -690,10 +697,10 @@ public class UI_Battle : MonoBehaviour {
             switch (System_Setting.Language)
             {
                 case 0:
-                    Text_Message.text = "平手";
+                    Text_Message.text += "平手";
                     break;
                 case 1:
-                    Text_Message.text = "It;s tie";
+                    Text_Message.text += "It;s tie";
                     break;
                 default:
                     break;
@@ -709,12 +716,12 @@ public class UI_Battle : MonoBehaviour {
             {
                 case 0:
                     Text_Next.text = "結束";
-                    Text_Message.text = "遊戲結束!";
+                    Text_Message.text += "遊戲結束!";
                     Text_Count.text = "你輸了!";
                     break;
                 case 1:
                     Text_Next.text = "END";
-                    Text_Message.text = "Game Over !";
+                    Text_Message.text += "Game Over !";
                     Text_Count.text = "You Lose !";
                     break;
                 default:
@@ -729,12 +736,12 @@ public class UI_Battle : MonoBehaviour {
             {
                 case 0:
                     Text_Next.text = "結束";
-                    Text_Message.text = "遊戲結束!";
+                    Text_Message.text += "遊戲結束!";
                     Text_Count.text = "你贏了!";
                     break;
                 case 1:
                     Text_Next.text = "END";
-                    Text_Message.text = "Game Over !";
+                    Text_Message.text += "Game Over !";
                     Text_Count.text = "You Win !";
                     break;
                 default:
@@ -752,12 +759,12 @@ public class UI_Battle : MonoBehaviour {
                 {
                     case 0:
                         Text_Next.text = "結束";
-                        Text_Message.text = "遊戲結束!";
+                        Text_Message.text += "遊戲結束!";
                         Text_Count.text = "你贏了!";
                         break;
                     case 1:
                         Text_Next.text = "END";
-                        Text_Message.text = "Game Over !";
+                        Text_Message.text += "Game Over !";
                         Text_Count.text = "You Win !";
                         break;
                     default:
@@ -772,12 +779,12 @@ public class UI_Battle : MonoBehaviour {
                 {
                     case 0:
                         Text_Next.GetComponentInChildren<Text>().text = "結束";
-                        Text_Message.text = "遊戲結束!";
+                        Text_Message.text += "遊戲結束!";
                         Text_Count.text = "你輸了!";
                         break;
                     case 1:
                         Text_Next.text = "END";
-                        Text_Message.text = "Game Over !";
+                        Text_Message.text += "Game Over !";
                         Text_Count.text = "You Lose !";
                         break;
                     default:
@@ -793,12 +800,12 @@ public class UI_Battle : MonoBehaviour {
             {
                 case 0:
                     Text_Next.text = "結束";
-                    Text_Message.text = "遊戲結束 !";
+                    Text_Message.text += "遊戲結束 !";
                     Text_Count.text = "我方牌組已抽完，你輸了 !";
                     break;
                 case 1:
                     Text_Next.text = "結束";
-                    Text_Message.text = "遊戲結束 !";
+                    Text_Message.text += "遊戲結束 !";
                     Text_Count.text = "我方牌組已抽完，你輸了 !";
                     break;
                 default:
@@ -813,12 +820,12 @@ public class UI_Battle : MonoBehaviour {
             {
                 case 0:
                     Text_Next.text = "結束";
-                    Text_Message.text = "遊戲結束 !";
+                    Text_Message.text += "遊戲結束 !";
                     Text_Count.text = "敵方牌組已抽完，你贏了!";
                     break;
                 case 1:
                     Text_Next.text = "END";
-                    Text_Message.text = "Game Over !";
+                    Text_Message.text += "Game Over !";
                     Text_Count.text = "Com's Deck is gone !";
                     break;
                 default:
@@ -954,21 +961,52 @@ public class UI_Battle : MonoBehaviour {
     void Settlement(int n)
     {
         int challenge = Question_Data.GetChallenge();
-
+        int hard = Player_Data.hardGet();
         ui_Info.SetActive(false);
         ui_CardPlay.SetActive(false);
         ui_Phase.SetActive(false);
         ui_HandPlay.SetActive(false);
         ui_Settlement.SetActive(true);
 
+        if (challenge == 1)
+            Image_Item.sprite = Resources.Load("Image/Main/Score", typeof(Sprite)) as Sprite;
+        else if (challenge == 0)
+            Image_Item.sprite = Resources.Load("Image/Main/Crystal", typeof(Sprite)) as Sprite;
+
         if (challenge == 1 && n == 0)
+        {
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
             Flag.text = "挑戰失敗！";
+            Mechanism_Data.Punishment("Task",6+ hard);
+            Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+            Learner_Data.Learner_Add("Task_Fail", 1);
+            Learner_Data.Learner_Add("Task_Finish", 1);
+        }
         else if (challenge == 1 && n == 1)
+        {
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
             Flag.text = "挑戰成功！";
+            Mechanism_Data.Reward("Task", 6 + hard);
+            Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+            Learner_Data.Learner_Add("Task_Succes", 1);
+            Learner_Data.Learner_Add("Task_Finish", 1);
+        }
         else if (challenge == 0 && n == 0)
+        {
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
             Flag.text = "練習失敗！";
+            Mechanism_Data.Punishment("Battle", 6 + hard);
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString();
+            Learner_Data.Learner_Add("Battle_Lose", 1);
+        }
         else if (challenge == 0 && n == 1)
+        {
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
             Flag.text = "練習成功！";
+            Mechanism_Data.Reward("Battle", 6 + hard);
+            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString();
+            Learner_Data.Learner_Add("Battle_Win", 1);
+        }
 
         if (Question_Num < 6)
             PageDown = 1;
@@ -994,6 +1032,7 @@ public class UI_Battle : MonoBehaviour {
     }
     void F_Left(BaseEventData data)
     {
+        PageTurning.Play();
         if (PageUP > 1)
         {
             PageUP--;
@@ -1002,6 +1041,7 @@ public class UI_Battle : MonoBehaviour {
     }
     void F_Right(BaseEventData data)
     {
+        PageTurning.Play();
         if (PageUP < PageDown)
         {
             PageUP++;
@@ -1054,6 +1094,7 @@ public class UI_Battle : MonoBehaviour {
     }
     void Back()
     {
+        ok.Play();
         SceneManager.LoadScene("Main");
     }
     #endregion
