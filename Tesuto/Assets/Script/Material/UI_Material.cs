@@ -26,7 +26,7 @@ public class UI_Material : MonoBehaviour {
     public Text Text_Num, Text_E_Name, Text_C_Name, Text_PartOfSpeech, Text_Sentence, Text_Info, Button_Back_Text;
     public GameObject[] Direction = new GameObject[4]; //up down left right
     public AudioSource[] voice = new AudioSource[20];
-    public AudioSource Ok;
+    public AudioSource Ok,PageTurning;
     #endregion
 
 
@@ -108,6 +108,7 @@ public class UI_Material : MonoBehaviour {
     #region Material PointerClick
     void Click_Right(BaseEventData data)
     {
+        PageTurning.Play();
         if (No > 8 && ten == 10)
         {
             No = 0;
@@ -128,6 +129,7 @@ public class UI_Material : MonoBehaviour {
     }
     void Click_Left(BaseEventData data)
     {
+        PageTurning.Play();
         if (No < 1 && ten == 0)
         {
             No = 9;
@@ -148,6 +150,7 @@ public class UI_Material : MonoBehaviour {
     }
     void Click_Up(BaseEventData data)
     {
+        PageTurning.Play();
         if (ten == 0)
             ten = 10;
         else
@@ -157,6 +160,7 @@ public class UI_Material : MonoBehaviour {
     }
     void Click_Down(BaseEventData data)
     {
+        PageTurning.Play();
         if (ten == 10)
             ten = 0;
         else

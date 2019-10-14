@@ -45,6 +45,10 @@ static class Learner_Data{
     //Mistakes
     private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warning YC RC
     private static int Mistakes_Num = 0; //失誤
+    //Tool
+    private static int Supplement = 0; //點數補充
+    private static int Certificate = 0; //誓言之證
+    private static int Metal = 0; //免死金牌
 
     public static void Learner_Add(string s,int n) // s=想要加的東西  n=數字(可+ -)   
     {
@@ -79,6 +83,10 @@ static class Learner_Data{
             //Punishment
             case "Points_Num": Points_Num += n; break;
             case "Mistakes_Num": Mistakes_Num += n; break;
+            //Tool
+            case "Supplement": Supplement+=n; break;
+            case "Certificate": Certificate += n; break;
+            case "Metal": Metal += n; break;
             default: break;
         }
         CheckBase(s);
@@ -113,7 +121,10 @@ static class Learner_Data{
             //Punishment
             case "Points_Num": n= Points_Num; break;
             case "Mistakes_Num": n= Mistakes_Num; break;
-
+            //Tool
+            case "Supplement": n = Supplement; break;
+            case "Certificate": n = Certificate; break;
+            case "Metal": n = Metal; break;
             default: n = 0; break;
         }
         return n;
@@ -155,7 +166,7 @@ static class Learner_Data{
     {
         return Cards_GetStatus[n];
     }
-    public static void Learner_ChangeCards_Status(int n) //Cards
+    public static void Learner_ChangeCardsGet_Status(int n) //Cards
     {
         Cards_GetStatus[n] += 1;
     }
