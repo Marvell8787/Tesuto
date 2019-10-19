@@ -83,6 +83,11 @@ public class UI_Level : MonoBehaviour {
 
         ui_Title.SetActive(true);
 
+        Text_QuestionType.text = System_Interface.Level_QuestionType_Text;
+        Text_Level.text = System_Interface.Level_Level_Text;
+        Text_Answer.text = System_Interface.Level_Answer_Text;
+        Text_Score.text = System_Interface.Level_Score_Text;
+        Text_Next.text = System_Interface.Level_Next_Text;
         Text_ENDContent.text = "";
         Text_FeedBack.text = "";
         Text_AnswerContent.text = "";
@@ -90,9 +95,7 @@ public class UI_Level : MonoBehaviour {
         Level_Class[] level_temp = new Level_Class[7];
         Question_Class question_temp = new Question_Class();
         for (int i = 0; i < 7; i++)
-        {
             level_temp[i] = Level_Data.Level_Get(i);
-        }
         question_temp = Question_Data.Question_Get(0);
         Level = Question_Data.GetLevel();
         Challenge = Question_Data.GetChallenge();
@@ -117,7 +120,7 @@ public class UI_Level : MonoBehaviour {
             case 0: //Level-1 聽力
             case 1: //Level-2 聽力
             case 2: //Level-3 聽力
-                Text_Question.text = "請點選左邊的圖示，並選出聽到的答案。";
+                Text_Question.text = System_Interface.Level_ListeningDescription_Text;
                 Image_Question.sprite = Resources.Load("Image/Voice", typeof(Sprite)) as Sprite;
                 Question_Data.Button_Ans_Set(Level, Question_Num);
                 for (int i = 0; i < 3; i++)
@@ -135,7 +138,7 @@ public class UI_Level : MonoBehaviour {
                 ui_Level.SetActive(true);
                 break;
             case 6:
-                Text_description.text = "請拼出正確的單字：";
+                Text_description.text = System_Interface.Level_SpellingDescription_Text;
                 Text_Question.text = question_temp.GetQuestion();
                 Image_Question.sprite = Resources.Load("Image/Voice", typeof(Sprite)) as Sprite;
                 ui_Overall.SetActive(true);
@@ -211,8 +214,8 @@ public class UI_Level : MonoBehaviour {
 
         if (Question_Num == Question_total - 1)
         {
-            Text_ENDContent.text = "結束";
-            Text_Next.text = "結算";
+            Text_ENDContent.text = System_Interface.Level_ENDContent_Text;
+            Text_Next.text = System_Interface.Level_Settlement_Text;
         }
     }
     public void Next()

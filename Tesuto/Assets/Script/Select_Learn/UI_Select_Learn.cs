@@ -34,6 +34,7 @@ public class UI_Select_Learn : MonoBehaviour {
     public Button Button_Content_Cancel;
     public Text Text_QuestionType, Text_Range, Text_Reward, Text_Punishment, Text_HighestScore;
     public Text Text_QuestionType_Content, Text_Range_Content, Text_Reward_Content, Text_Punishment_Content, Text_HighestScore_Content;
+    public Text Button_Start_Text;
     #endregion
 
     #region Button
@@ -55,6 +56,7 @@ public class UI_Select_Learn : MonoBehaviour {
         Text_Reward.text = System_Interface.SelectLearn_Practice_Reward_Text;
         Text_Punishment.text = System_Interface.SelectLearn_Practice_Punishment_Text;
         Text_HighestScore.text = System_Interface.SelectLearn_Practice_HighestScore_Text;
+        Button_Start_Text.text = System_Interface.SelectLearn_Button_Start_Text;
 
         Level_Data.Level_Init();
 

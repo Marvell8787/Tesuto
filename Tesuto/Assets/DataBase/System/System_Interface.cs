@@ -40,8 +40,15 @@ static class System_Interface{
     public static string SelectLean_Button_Practice_Text, SelectLean_Button_Challenge_Text, SelectLean_Button_Back_Text, Select_Button_Start_Text;
     public static string SelectLearn_Practice_QuestionType_Text, SelectLearn_Practice_Range_Text, SelectLearn_Practice_Reward_Text, SelectLearn_Practice_Punishment_Text, SelectLearn_Practice_HighestScore_Text;  //Practice
     public static string SelectLearn_Challenge_Threshold_Text, SelectLearn_Challenge_Request_Text, SelectLearn_Challenge_Reward_Text, SelectLearn_Challenge_Punishment_Text;  //Challenge
-
+    public static string SelectLearn_Button_Start_Text;
     #endregion
+    //Level
+    #region Level
+    public static string Level_QuestionType_Text, Level_Level_Text, Level_Answer_Text, Level_Score_Text;
+    public static string Level_ListeningDescription_Text, Level_SpellingDescription_Text, Level_ENDContent_Text, Level_Next_Text, Level_Settlement_Text;
+    public static string Level_Submit_Text;
+    #endregion
+    //Material
     //Badges
     #region
     public static string Badges_Info_Text;
@@ -197,6 +204,41 @@ static class System_Interface{
             case "SelectLearn_Challenge_Punishment_Text":
                 SelectLearn_Challenge_Punishment_Text = s;
                 break;
+            case "SelectLearn_Button_Start_Text":
+                SelectLearn_Button_Start_Text = s;
+                break;
+            //Level
+            case "Level_QuestionType_Text":
+                Level_QuestionType_Text = s;
+                break;
+            case "Level_Level_Text":
+                Level_Level_Text = s;
+                break;
+            case "Level_Answer_Text":
+                Level_Answer_Text = s;
+                break;
+            case "Level_Score_Text":
+                Level_Score_Text = s;
+                break;
+            case "Level_ListeningDescription_Text":
+                Level_ListeningDescription_Text = s;
+                break;
+            case "Level_SpellingDescription_Text":
+                Level_SpellingDescription_Text = s;
+                break;
+            case "Level_ENDContent_Text":
+                Level_ENDContent_Text = s;
+                break;
+            case "Level_Next_Text":
+                Level_Next_Text = s;
+                break;
+            case "Level_Settlement_Text":
+                Level_Settlement_Text = s;
+                break;
+            case "Level_Submit_Text":
+                Level_Submit_Text = s;
+                break;
+            //Material
             //Badges
             case "Badges_Info_Text":
                 Badges_Info_Text = s;
