@@ -91,6 +91,11 @@ public class UI_Level : MonoBehaviour {
         Text_ENDContent.text = "";
         Text_FeedBack.text = "";
         Text_AnswerContent.text = "";
+        S_QNum.text = System_Interface.Level_SettlementQuestionNum_Text;
+        S_Question.text = System_Interface.Level_SettlementQuestion_Text;
+        S_Choose.text = System_Interface.Level_SettlementChoose_Text;
+        S_Answer.text = System_Interface.Level_SettlementAnswer_Text;
+        S_Feedback.text = System_Interface.Level_SettlementFeedback_Text;
 
         Level_Class[] level_temp = new Level_Class[7];
         Question_Class question_temp = new Question_Class();
@@ -252,7 +257,7 @@ public class UI_Level : MonoBehaviour {
                     Image_Item.sprite = Resources.Load("Image/Main/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(3);
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-                    Flag.text = "挑戰成功!";
+                    Flag.text = System_Interface.Level_ChallengeFlag_Success;
                     Mechanism_Data.Reward("Task", Level);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
                     Learner_Data.Learner_Add("Task_Succes", 1);
@@ -263,7 +268,7 @@ public class UI_Level : MonoBehaviour {
                     Image_Item.sprite = Resources.Load("Image/Main/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(3);
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-                    Flag.text = "挑戰失敗!";
+                    Flag.text = System_Interface.Level_ChallengeFlag_Failed;
                     Mechanism_Data.Punishment("Task", Level);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
                     Learner_Data.Learner_Add("Task_Fail", 1);
@@ -276,7 +281,7 @@ public class UI_Level : MonoBehaviour {
                 if (Score > 59)//成功
                 {
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
-                    Flag.text = "練習成功!";
+                    Flag.text = System_Interface.Level_PracticeFlag_Success;
                     Mechanism_Data.Punishment("Learn", Level);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Coin").ToString();
 
@@ -290,7 +295,7 @@ public class UI_Level : MonoBehaviour {
                 else if (Score < 60) //失敗
                 {
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
-                    Flag.text = "練習失敗!";
+                    Flag.text = System_Interface.Level_PracticeFlag_Failed;
                     Mechanism_Data.Punishment("Learn", Level);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Coin").ToString();
                     Learner_Data.Learner_Add("Learn_Fail", 1);

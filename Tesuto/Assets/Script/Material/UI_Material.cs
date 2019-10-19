@@ -18,6 +18,7 @@ public class UI_Material : MonoBehaviour {
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
+
     #region Material
     public GameObject Voice;
     public Button Button_Back;
@@ -32,7 +33,8 @@ public class UI_Material : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        Text_Info.text = System_Interface.Material_Info_Text;
+        Button_Back_Text.text = System_Interface.Material_Button_Back_Text;
         #region Material PointerEnter
         AddEvents.AddTriggersListener(Direction[0], EPEnter, Enter_Up);
         AddEvents.AddTriggersListener(Direction[1], EPEnter, Enter_Down);
@@ -78,30 +80,30 @@ public class UI_Material : MonoBehaviour {
     #region Material PointerEnter
     void Enter_Up(BaseEventData data)
     {
-        Text_Info.text = "上一頁";
+        Text_Info.text = System_Interface.Material_Info_PageUp_Text;
     }
     void Enter_Down(BaseEventData data)
     {
-        Text_Info.text = "下一頁";
+        Text_Info.text = System_Interface.Material_Info_PageDown_Text;
     }
     void Enter_Left(BaseEventData data)
     {
-        Text_Info.text = "上一個";
+        Text_Info.text = System_Interface.Material_Info_PageLeft_Text;
     }
     void Enter_Right(BaseEventData data)
     {
-        Text_Info.text = "下一個";
+        Text_Info.text = System_Interface.Material_Info_PageRight_Text;
     }
     void Enter_Voice(BaseEventData data)
     {
-        Text_Info.text = "點擊即可播放音檔";
+        Text_Info.text = System_Interface.Material_Info_Voice_Text;
     }
     #endregion
 
     #region Material PointerExit
     void Exit(BaseEventData data)
     {
-        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = System_Interface.Material_Info_Text;
     }
     #endregion
 

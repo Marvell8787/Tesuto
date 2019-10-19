@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 static class System_Interface{
-    //Login
+    
     #region Login_Interface (Language)
     #region ui_Main
     public static string Start_Text, Setting_Text, Thank_Text;
@@ -19,49 +19,55 @@ static class System_Interface{
     public static string Resources_Text;
     #endregion
     #endregion
-    //Main
+    
     #region Main_Interface (Language)
     public static string Info_Text, Info_Task_Text, Info_Learn_Text, Info_Battle_Text, Info_Guide_Text, Info_Profile_Text, Info_Shop_Text, Info_Deck_Text, Info_Badges_Text, Info_Rank_Text, Info_Task_Goal_Text;
     #endregion
-    //Task
-    #region
+    
+    #region Task
     public static string Task_Info_Text,Task_Info_Learn_Text, Task_Info_Battle_Text;
     public static string Task_Button_Take_Text;
     public static string Task_Threshold_Text, Task_Request_Text, Task_Reward_Text, Task_Punishment_Text;
     #endregion
-    //Learn
-    #region
+
+    #region Leaarn
     public static string Learn_Info_Text;
     public static string Lean_Button_Material_Text, Lean_Button_Level_Text;
     #endregion
-    //Select Learn
-    #region
+
+    #region Select Learn
     public static string SelectLearn_Info_Text, SelectLearn_Info_Practice_Text, SelectLearn_Info_Challenge_Text;
-    public static string SelectLean_Button_Practice_Text, SelectLean_Button_Challenge_Text, SelectLean_Button_Back_Text, Select_Button_Start_Text;
+    public static string SelectLean_Button_Practice_Text, SelectLean_Button_Challenge_Text, SelectLean_Button_Back_Text, SelectLearn_Button_Start_Text;
     public static string SelectLearn_Practice_QuestionType_Text, SelectLearn_Practice_Range_Text, SelectLearn_Practice_Reward_Text, SelectLearn_Practice_Punishment_Text, SelectLearn_Practice_HighestScore_Text;  //Practice
     public static string SelectLearn_Challenge_Threshold_Text, SelectLearn_Challenge_Request_Text, SelectLearn_Challenge_Reward_Text, SelectLearn_Challenge_Punishment_Text;  //Challenge
-    public static string SelectLearn_Button_Start_Text;
     #endregion
-    //Level
+    
     #region Level
     public static string Level_QuestionType_Text, Level_Level_Text, Level_Answer_Text, Level_Score_Text;
     public static string Level_ListeningDescription_Text, Level_SpellingDescription_Text, Level_ENDContent_Text, Level_Next_Text, Level_Settlement_Text;
     public static string Level_Submit_Text;
+    public static string Level_SettlementQuestionNum_Text, Level_SettlementQuestion_Text, Level_SettlementAnswer_Text, Level_SettlementChoose_Text, Level_SettlementFeedback_Text;
+    public static string Level_PracticeFlag_Success, Level_PracticeFlag_Failed, Level_ChallengeFlag_Success, Level_ChallengeFlag_Failed;
     #endregion
-    //Material
-    //Badges
-    #region
+    
+    #region Material
+    public static string Material_Button_Back_Text, Material_Info_Text, Material_Info_PageUp_Text, Material_Info_PageDown_Text, Material_Info_PageRight_Text, Material_Info_PageLeft_Text, Material_Info_Voice_Text;
+    #endregion
+    
+    #region Badges
     public static string Badges_Info_Text;
     #endregion
-    //Rank
-    #region
+    
+    #region Rank
     public static string Rank_Info_Text;
     #endregion
+
     public static void InterfaceChange(string index,string s)
     {
         switch (index)
         {
-            //Login
+            
+            #region Login
             case "Start_Text":
                 Start_Text = s;
                 break;
@@ -95,7 +101,9 @@ static class System_Interface{
             case "Resources_Text":
                 Resources_Text = s;
                 break;
-            //Main
+            #endregion
+            
+            #region Main
             case "Info_Text":
                 Info_Text = s;
                 break;
@@ -129,7 +137,9 @@ static class System_Interface{
             case "Info_Task_Goal_Text":
                 Info_Task_Goal_Text = s;
                 break;
-            //Task
+            #endregion
+            
+            #region Task
             case "Task_Info_Text":
                 Task_Info_Text = s;
                 break;
@@ -154,7 +164,9 @@ static class System_Interface{
             case "Task_Punishment_Text":
                 Task_Punishment_Text = s;
                 break;
-            //Learn
+            #endregion
+            
+            #region Learn
             case "Learn_Info_Text":
                 Learn_Info_Text = s;
                 break;
@@ -164,9 +176,17 @@ static class System_Interface{
             case "Lean_Button_Level_Text":
                 Lean_Button_Level_Text = s;
                 break;
-            //SelectLearn
+            #endregion
+            
+            #region SelectLearn
             case "SelectLearn_Info_Text":
                 SelectLearn_Info_Text = s;
+                break;
+            case "SelectLearn_Info_Practice_Text":
+                SelectLearn_Info_Practice_Text = s;
+                break;
+            case "SelectLearn_Info_Challenge_Text":
+                SelectLearn_Info_Challenge_Text = s;
                 break;
             case "SelectLean_Button_Practice_Text":
                 SelectLean_Button_Practice_Text = s;
@@ -207,7 +227,9 @@ static class System_Interface{
             case "SelectLearn_Button_Start_Text":
                 SelectLearn_Button_Start_Text = s;
                 break;
-            //Level
+            #endregion
+            
+            #region Level
             case "Level_QuestionType_Text":
                 Level_QuestionType_Text = s;
                 break;
@@ -238,15 +260,71 @@ static class System_Interface{
             case "Level_Submit_Text":
                 Level_Submit_Text = s;
                 break;
-            //Material
-            //Badges
+            case "Level_SettlementQuestionNum_Text":
+                Level_SettlementQuestionNum_Text = s;
+                break;
+            case "Level_SettlementQuestion_Text":
+                Level_SettlementQuestion_Text = s;
+                break;
+            case "Level_SettlementAnswer_Text":
+                Level_SettlementAnswer_Text = s;
+                break;
+            case "Level_SettlementChoose_Text":
+                Level_SettlementChoose_Text = s;
+                break;
+            case "Level_SettlementFeedback_Text":
+                Level_SettlementFeedback_Text = s;
+                break;
+            case "Level_PracticeFlag_Success":
+                Level_PracticeFlag_Success = s;
+                break;
+            case "Level_PracticeFlag_Failed":
+                Level_PracticeFlag_Failed = s;
+                break;
+            case "Level_ChallengeFlag_Success":
+                Level_ChallengeFlag_Success = s;
+                break;
+            case "Level_ChallengeFlag_Failed":
+                Level_ChallengeFlag_Failed = s;
+                break;
+            #endregion
+            
+            #region Material
+            case "Material_Info_Text":
+                Material_Info_Text = s;
+                break;
+            case "Material_Info_PageUp_Text":
+                Material_Info_PageUp_Text = s;
+                break;
+            case "Material_Info_PageDown_Text":
+                Material_Info_PageDown_Text = s;
+                break;
+            case "Material_Info_PageRight_Text":
+                Material_Info_PageRight_Text = s;
+                break;
+            case "Material_Info_PageLeft_Text":
+                Material_Info_PageLeft_Text = s;
+                break;
+            case "Material_Button_Back_Text":
+                Material_Button_Back_Text = s;
+                break;
+            case "Material_Info_Voice_Text":
+                Material_Info_Voice_Text = s;
+                break;
+            #endregion
+
+            #region Badges
             case "Badges_Info_Text":
                 Badges_Info_Text = s;
                 break;
-            //Rank
+            #endregion
+
+            #region Rank
             case "Rank_Info_Text":
                 Rank_Info_Text = s;
                 break;
+            #endregion
+
             default:
                 break;
         }
