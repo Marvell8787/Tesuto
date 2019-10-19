@@ -19,6 +19,8 @@ public class UI_Select_Learn : MonoBehaviour {
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
+    public Text Button_Practice_Text, Button_Challenge_Text;
+
     #region Select
     public GameObject ui_Select, ui_Content;
     public GameObject[] GameObject_Level = new GameObject[7];
@@ -28,7 +30,7 @@ public class UI_Select_Learn : MonoBehaviour {
     public Button Button_Select_Cancel;
     #endregion
 
-    #region Content
+    #region PracticeContent
     public Button Button_Content_Cancel;
     public Text Text_QuestionType, Text_Range, Text_Reward, Text_Punishment, Text_HighestScore;
     public Text Text_QuestionType_Content, Text_Range_Content, Text_Reward_Content, Text_Punishment_Content, Text_HighestScore_Content;
@@ -44,6 +46,15 @@ public class UI_Select_Learn : MonoBehaviour {
 
 
     void Start () {
+        Button_Practice_Text.text = System_Interface.SelectLean_Button_Practice_Text;
+        Button_Challenge_Text.text = System_Interface.SelectLean_Button_Challenge_Text;
+        Text_Info.text = System_Interface.SelectLearn_Info_Text;
+
+        Text_QuestionType.text = System_Interface.SelectLearn_Practice_QuestionType_Text;
+        Text_Range.text = System_Interface.SelectLearn_Practice_Range_Text;
+        Text_Reward.text = System_Interface.SelectLearn_Practice_Reward_Text;
+        Text_Punishment.text = System_Interface.SelectLearn_Practice_Punishment_Text;
+        Text_HighestScore.text = System_Interface.SelectLearn_Practice_HighestScore_Text;
 
         Level_Data.Level_Init();
 
@@ -88,19 +99,19 @@ public class UI_Select_Learn : MonoBehaviour {
     void Enter_Practice(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是練習\n點擊可開啟所有關卡來練習";
+        Text_Info.text = System_Interface.SelectLearn_Info_Practice_Text;
     }
     void Enter_Challenge(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是挑戰\n點擊可開啟接下的任務來挑戰";
+        Text_Info.text = System_Interface.SelectLearn_Info_Challenge_Text;
     }
     #endregion
 
     #region Select_Learn PointerExit
     void Exit(BaseEventData data)
     {
-        Text_Info.text = "請選擇要練習或挑戰\n";
+        Text_Info.text = System_Interface.SelectLearn_Info_Text;
     }
     #endregion
 

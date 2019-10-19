@@ -35,6 +35,7 @@ public class UI_Task : MonoBehaviour {
     public Text Text_Threshold, Text_Request, Text_Reward, Text_Punishment;
     public Text Text_Threshold_Content, Text_Request_Content, Text_Reward_Content, Text_Punishment_Content;
     public Button Button_Take;
+    public Text Button_Take_Text;
     #endregion
 
     // Use this for initialization
@@ -71,25 +72,31 @@ public class UI_Task : MonoBehaviour {
         Button_Task_Cancel.onClick.AddListener(Task_Cancel);
         Button_Task_Content_Cancel.onClick.AddListener(Task_Content_Cancel);
         #endregion
+
+        Text_Threshold.text = System_Interface.Task_Threshold_Text;
+        Text_Request.text = System_Interface.Task_Request_Text;
+        Text_Reward.text = System_Interface.Task_Reward_Text;
+        Text_Punishment.text = System_Interface.Task_Punishment_Text;
+        Button_Take_Text.text = System_Interface.Task_Button_Take_Text;
     }
 
     #region Task PointerEnter Function
     void Enter_Task_Learn(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是任務中的學習分類\n點擊可觀看學習任務";
+        Text_Info.text = System_Interface.Task_Info_Learn_Text;
     }
     void Enter_Task_Battle(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是任務中的戰鬥分類\n點擊可觀看戰鬥任務";
+        Text_Info.text = System_Interface.Task_Info_Battle_Text;
     }
     #endregion
 
     #region Task PointerExit Function
     void Exit(BaseEventData data)
     {
-        Text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
+        Text_Info.text = System_Interface.Task_Info_Text;
     }
     #endregion
 

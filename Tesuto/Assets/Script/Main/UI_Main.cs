@@ -27,6 +27,7 @@ public class UI_Main : MonoBehaviour {
     #region Learn 
     public GameObject ui_Learn;
     public Button Button_Material,Button_Level,Button_Cancel;
+    public Text Button_Material_Text, Button_Level_Text;
     #endregion
 
     #region Rank
@@ -39,11 +40,12 @@ public class UI_Main : MonoBehaviour {
     #endregion
 
     public GameObject ui_Badges;
-    public GameObject ui_Guide;
 
     // Use this for initialization
     void Start () {
         Text_Info.text = System_Interface.Info_Text;
+        Button_Material_Text.text = System_Interface.Lean_Button_Material_Text;
+        Button_Level_Text.text = System_Interface.Lean_Button_Level_Text;
 
         #region Home PointerEnter
         AddEvents.AddTriggersListener(GameObject_Task, EPEnter, Enter_Task);
@@ -110,41 +112,41 @@ public class UI_Main : MonoBehaviour {
     void Enter_Battle(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是戰鬥\n能以手中持有的卡牌與電腦進行對戰\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Battle_Text;
     }
     void Enter_Guide(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是導覽\n可得知本遊戲的相關資訊\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Guide_Text;
     }
     void Enter_Profile(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是狀態\n可得知玩家本身及持有物的狀態\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Profile_Text;
     }
     void Enter_Shop(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是商店\n能以分數、金幣、水晶購買相關物品\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Shop_Text; ;
     }
     void Enter_Deck(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是牌組\n可得知目前持有的卡牌資訊\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Deck_Text; ;
     }
     void Enter_Badges(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是獎章\n可得知獎章資訊\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Badges_Text; ;
     }
     void Enter_Rank(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是排行榜\n可得知玩家的排名狀況\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Rank_Text; ;
     }
     void Enter_Task_Goal(BaseEventData data)
     {
-        Text_Info.text = "這是本遊戲目標\n請完成所有任務";
+        Text_Info.text = System_Interface.Info_Task_Goal_Text; ;
     }
     #endregion
 
@@ -159,7 +161,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Task(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "點擊文字可觀看任務資訊\n點擊旁邊的圖像可選擇要接的任務類別";
+        Text_Info.text = System_Interface.Task_Info_Text;
         ui_Task.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
@@ -167,7 +169,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Learn(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "點擊教材可瀏覽本遊戲中的目標單字\n點擊關卡即可進入，並選擇要練習或挑戰";
+        Text_Info.text = System_Interface.Learn_Info_Text;
         ui_Learn.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
@@ -200,7 +202,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Badges(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "移至圖像可查看資訊\n點擊下方箭頭可換頁";
+        Text_Info.text = System_Interface.Badges_Info_Text;
         ui_Badges.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
@@ -208,7 +210,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Rank(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "移至圖像可查看資訊\n點擊圖像可顯示該類前五名";
+        Text_Info.text = System_Interface.Rank_Info_Text;
         ui_Rank.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
@@ -232,7 +234,7 @@ public class UI_Main : MonoBehaviour {
         ui_Learn.SetActive(false);
         ui_Home.SetActive(true);
         ui_Task_Goal.SetActive(true);
-        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = System_Interface.Info_Text;
     }
     #endregion
 
@@ -243,7 +245,7 @@ public class UI_Main : MonoBehaviour {
         ui_Rank.SetActive(false);
         ui_Home.SetActive(true);
         ui_Task_Goal.SetActive(true);
-        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = System_Interface.Info_Text;
     }
     #endregion
 }

@@ -47,7 +47,6 @@ public class Manager_Login{
         {
             string name, s;
             if (str != ""){
-                Debug.Log(str);
                 switch (Index)
                 {
                     case 0:
