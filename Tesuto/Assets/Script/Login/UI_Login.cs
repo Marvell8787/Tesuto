@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class UI_Login : MonoBehaviour {
 
+    #region Variable
+    private string user, pwd;
+    Manager_Login ml = new Manager_Login();
+    #endregion
+
     #region Main
     public GameObject ui_Main, ui_Start, ui_Setting, ui_Info,ui_Thank;
     public Button Button_Start, Button_Setting, Button_Thank, Button_Cancel;
@@ -14,11 +19,26 @@ public class UI_Login : MonoBehaviour {
 
     #region Login
     public Button Button_Login;
-    public InputField InputField_Account, InputField_Password;
+    public InputField InputField_Usename, InputField_Password, InputField_NickName;
     #endregion
 
     #region Setting
     public Dropdown Dropdown_Language, Dropdown_Version;
+    #endregion
+
+    #region Login_Interface (Language)
+    #region ui_Main
+    public Text Start_Text, Setting_Text, Thank_Text;
+    #endregion
+    #region ui_Start
+    public Text Username_Placeholder, Password_Placeholder, NickName_Placeholder, Login_Text, Login_Message;
+    #endregion
+    #region ui_Setting
+    public Text Language_Text, Version_Text;
+    #endregion
+    #region ui_Thanks
+    public Text Resources_Text;
+    #endregion
     #endregion
 
     // Use this for initialization
@@ -27,12 +47,14 @@ public class UI_Login : MonoBehaviour {
         Button_Setting.onClick.AddListener(Setting);
         Button_Thank.onClick.AddListener(Thank);
 
-        Button_Login.onClick.AddListener(Login);
+        Button_Login.onClick.AddListener(confirmlogin);
 
         Button_Cancel.onClick.AddListener(Cancel);
 
         Dropdown_Language.onValueChanged.AddListener(LanguageSelect);
         Dropdown_Version.onValueChanged.AddListener(VersionSelect);
+
+        StartCoroutine(ChangeLanguage());
     }
 
     void START()
@@ -58,16 +80,115 @@ public class UI_Login : MonoBehaviour {
         ui_Info.SetActive(true);
         ui_Thank.SetActive(true);
     }
-
-    void Login()
+    #region Login
+    void confirmlogin()
     {
         ok.Play();
-        Task_Data.Task_Init(); //之後要移到Login
-        Card_Data.Card_Init();
-        Vocabulary_Data.Vocabulary_Init(); //之後移到Login
-
-        SceneManager.LoadScene("Main");
+        user = InputField_Usename.text;
+        pwd = InputField_Password.text;
+        if (user != "")
+        {
+            if (pwd != "")
+            {
+                switch (System_Setting.Language)
+                {
+                    case 0:
+                        Login_Message.text = "資料載入中";
+                        break;
+                    case 1:
+                        Login_Message.text = "Loding......";
+                        break;
+                    default:
+                        break;
+                }
+                StartCoroutine(Login());
+            }
+            else
+            {
+                switch (System_Setting.Language)
+                {
+                    case 0:
+                        Login_Message.text = "密碼不可為空";
+                        break;
+                    case 1:
+                        Login_Message.text = "Password cannot be empty";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else
+        {
+            switch (System_Setting.Language)
+            {
+                case 0:
+                    Login_Message.text = "學號不可為空";
+                    break;
+                case 1:
+                    Login_Message.text = "SchoolNumber cannot be empty";
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+    IEnumerator Login()
+    {
+        StartCoroutine(ml.CheckLogin("Login.php", user, pwd));
+        yield return new WaitForSeconds(1f);
+        if (ml.state == 1)
+        {
+            System_Setting.NickName = InputField_NickName.text;
+            Task_Data.Task_Init();
+            Card_Data.Card_Init();
+            Vocabulary_Data.Vocabulary_Init();
+            SceneManager.LoadScene("Main");
+        }
+        else if (ml.state == 0)
+        {
+            switch (System_Setting.Language)
+            {
+                case 0:
+                    Login_Message.text = "帳號或密碼不正確";
+                    break;
+                case 1:
+                    Login_Message.text = "SchoolNumber or Password is incorrect";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (ml.state == 2)
+        {
+            switch (System_Setting.Language)
+            {
+                case 0:
+                    Login_Message.text = "連線失敗";
+                    break;
+                case 1:
+                    Login_Message.text = "Connection failed";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (ml.state == 3)
+        {
+            switch (System_Setting.Language)
+            {
+                case 0:
+                    Login_Message.text = "發生錯誤";
+                    break;
+                case 1:
+                    Login_Message.text = "Error";
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    #endregion
 
     void Cancel()
     {
@@ -93,6 +214,7 @@ public class UI_Login : MonoBehaviour {
             default:
                 break;
         }
+        StartCoroutine(ChangeLanguage());
     }
     void VersionSelect(int index)
     {
@@ -113,6 +235,32 @@ public class UI_Login : MonoBehaviour {
             default:
                 break;
         }
+    }
+    IEnumerator ChangeLanguage()
+    {
+        switch (System_Setting.Language)
+        {
+            case 0:
+                StartCoroutine(ml.ChangeLanguage("interface_chinese.php", 0));
+                break;
+            case 1:
+                StartCoroutine(ml.ChangeLanguage("interface_english.php", 1));
+                break;
+            default:
+                break;
+        }
+        yield return new WaitForSeconds(1f);
+        Start_Text.text = System_Interface.Start_Text;
+        Setting_Text.text = System_Interface.Setting_Text;
+        Thank_Text.text = System_Interface.Thank_Text;
+        Username_Placeholder.text = System_Interface.Username_Placeholder;
+        Password_Placeholder.text = System_Interface.Password_Placeholder;
+        NickName_Placeholder.text = System_Interface.NickName_Placeholder;
+        Login_Text.text = System_Interface.Login_Text;
+        Login_Message.text = System_Interface.Login_Message;
+        Language_Text.text = System_Interface.Language_Text;
+        Version_Text.text = System_Interface.Version_Text;
+        Resources_Text.text = System_Interface.Resources_Text;
     }
     #endregion
 }

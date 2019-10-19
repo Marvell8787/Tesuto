@@ -43,6 +43,8 @@ public class UI_Main : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Text_Info.text = System_Interface.Info_Text;
+
         #region Home PointerEnter
         AddEvents.AddTriggersListener(GameObject_Task, EPEnter, Enter_Task);
         AddEvents.AddTriggersListener(GameObject_Learn, EPEnter, Enter_Learn);
@@ -98,12 +100,12 @@ public class UI_Main : MonoBehaviour {
     void Enter_Task(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是任務\n是本遊戲中要完成的目標\n點擊可開啟任務清單";
+        Text_Info.text = System_Interface.Info_Task_Text;
     }
     void Enter_Learn(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是學習\n含有教材和關卡\n點擊即可進入";
+        Text_Info.text = System_Interface.Info_Learn_Text;
     }
     void Enter_Battle(BaseEventData data)
     {
@@ -149,7 +151,7 @@ public class UI_Main : MonoBehaviour {
     #region Home PointerExit Function
     void Exit(BaseEventData data)
     {
-        Text_Info.text = "這邊是資訊欄\n移至圖像可得知相關資訊";
+        Text_Info.text = System_Interface.Info_Text;
     }
     #endregion
 
@@ -198,7 +200,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Badges(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "移至圖像可查看資訊/n點擊下方箭頭可換頁";
+        Text_Info.text = "移至圖像可查看資訊\n點擊下方箭頭可換頁";
         ui_Badges.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
@@ -206,7 +208,7 @@ public class UI_Main : MonoBehaviour {
     public void Click_Rank(BaseEventData data)
     {
         ok.Play();
-        Text_Info.text = "移至圖像可查看資訊/n點擊圖像可顯示該類前五名";
+        Text_Info.text = "移至圖像可查看資訊\n點擊圖像可顯示該類前五名";
         ui_Rank.SetActive(true);
         ui_Home.SetActive(false);
         ui_Task_Goal.SetActive(false);
