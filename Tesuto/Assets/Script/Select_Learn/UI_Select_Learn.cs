@@ -19,14 +19,14 @@ public class UI_Select_Learn : MonoBehaviour {
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
-    public Text Button_Practice_Text, Button_Challenge_Text;
+    public Text Button_Practice_Text, Button_Challenge_Text, Button_Back_Text;
 
     #region Select
-    public GameObject ui_Select, ui_Content;
+    public GameObject ui_Select, ui_Content,ui_ChallengeContent;
     public GameObject[] GameObject_Level = new GameObject[7];
     public Text[] Text_Level = new Text[7];
     public Text Text_Info;
-    public GameObject GameObject_Practice,GameObject_Challenge;
+    public GameObject GameObject_Practice,GameObject_Challenge, GameObject_Start;
     public Button Button_Select_Cancel;
     #endregion
 
@@ -35,6 +35,12 @@ public class UI_Select_Learn : MonoBehaviour {
     public Text Text_QuestionType, Text_Range, Text_Reward, Text_Punishment, Text_HighestScore;
     public Text Text_QuestionType_Content, Text_Range_Content, Text_Reward_Content, Text_Punishment_Content, Text_HighestScore_Content;
     public Text Button_Start_Text;
+    #endregion
+
+    #region ChallengeContent
+    public Button Button_Challenge_Content_Cancel;
+    public Text Text_Challenge_Threshold, Text_Challenge_Request, Text_Challenge_Reward, Text_Challenge_Punishment;
+    public Text Text_Challenge_Threshold_Content, Text_Challenge_Request_Content, Text_Challenge_Reward_Content, Text_Challenge_Punishment_Content;
     #endregion
 
     #region Button
@@ -47,8 +53,9 @@ public class UI_Select_Learn : MonoBehaviour {
 
 
     void Start () {
-        Button_Practice_Text.text = System_Interface.SelectLean_Button_Practice_Text;
-        Button_Challenge_Text.text = System_Interface.SelectLean_Button_Challenge_Text;
+        Button_Practice_Text.text = System_Interface.SelectLearn_Button_Practice_Text;
+        Button_Challenge_Text.text = System_Interface.SelectLearn_Button_Challenge_Text;
+        Button_Back_Text.text = System_Interface.SelectLearn_Button_Back_Text;
         Text_Info.text = System_Interface.SelectLearn_Info_Text;
 
         Text_QuestionType.text = System_Interface.SelectLearn_Practice_QuestionType_Text;
@@ -57,6 +64,11 @@ public class UI_Select_Learn : MonoBehaviour {
         Text_Punishment.text = System_Interface.SelectLearn_Practice_Punishment_Text;
         Text_HighestScore.text = System_Interface.SelectLearn_Practice_HighestScore_Text;
         Button_Start_Text.text = System_Interface.SelectLearn_Button_Start_Text;
+
+        Text_Challenge_Threshold.text = System_Interface.SelectLearn_Challenge_Threshold_Text;
+        Text_Challenge_Request_Content.text = System_Interface.SelectLearn_Challenge_Request_Text;
+        Text_Challenge_Reward_Content.text = System_Interface.SelectLearn_Challenge_Reward_Text;
+        Text_Challenge_Punishment_Content.text = System_Interface.SelectLearn_Challenge_Punishment_Text;
 
         Level_Data.Level_Init();
 
@@ -95,6 +107,7 @@ public class UI_Select_Learn : MonoBehaviour {
 
         Button_Select_Cancel.onClick.AddListener(Select_Cancel);
         Button_Content_Cancel.onClick.AddListener(Content_Cancel);
+        Button_Challenge_Content_Cancel.onClick.AddListener(Content_Cancel);
     }
 
     #region Select_Learn PointerEnter
@@ -125,7 +138,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 0;
             ShowContent(0);
-            ui_Content.SetActive(true);
             n1 = 1;n2 = 10;
         }
 
@@ -137,7 +149,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 1;
             ShowContent(1);
-            ui_Content.SetActive(true);
             n1 = 11; n2 = 20;
         }
     }
@@ -148,7 +159,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 2;
             ShowContent(2);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 20;
         }
     }
@@ -159,7 +169,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 3;
             ShowContent(3);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 10;
         }
     }
@@ -170,7 +179,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 4;
             ShowContent(4);
-            ui_Content.SetActive(true);
             n1 = 11; n2 = 20;
         }
     }
@@ -181,7 +189,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 5;
             ShowContent(5);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 20;
         }
     }
@@ -192,7 +199,6 @@ public class UI_Select_Learn : MonoBehaviour {
             ok.Play();
             choose_n = 6;
             ShowContent(6);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 20;
         }
     }
@@ -203,12 +209,14 @@ public class UI_Select_Learn : MonoBehaviour {
         cancel.Play();
         ui_Select.SetActive(false);
         ui_Content.SetActive(false);
-
+        GameObject_Start.SetActive(false);
     }
     void Content_Cancel()
     {
         cancel.Play();
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
     }
     void Back()
     {
@@ -227,6 +235,8 @@ public class UI_Select_Learn : MonoBehaviour {
     void Click_Practice()
     {
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
         ok.Play();
         ui_Select.SetActive(true);
         choose_s = "practice";
@@ -241,6 +251,8 @@ public class UI_Select_Learn : MonoBehaviour {
     void Click_Challenge()
     {
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
         ok.Play();
         Task_Class task_temp = new Task_Class();
         ui_Select.SetActive(true);
@@ -264,11 +276,25 @@ public class UI_Select_Learn : MonoBehaviour {
         Task_Class task_temp = new Task_Class();
         task_temp = Task_Data.Learn_Get(n);
 
-        Text_QuestionType_Content.text = level_temp.GetQuestionType();
-        Text_Range_Content.text = level_temp.GetRange();
-        Text_Reward_Content.text = level_temp.GetReward();
-        Text_Punishment_Content.text = level_temp.GetPunishment();
-        Text_HighestScore_Content.text = level_temp.GetHighestScore();
+        if (choose_s == "practice")
+        {
+            ui_Content.SetActive(true);
+            Text_QuestionType_Content.text = level_temp.GetQuestionType();
+            Text_Range_Content.text = level_temp.GetRange();
+            Text_Reward_Content.text = level_temp.GetReward();
+            Text_Punishment_Content.text = level_temp.GetPunishment();
+            Text_HighestScore_Content.text = level_temp.GetHighestScore();
+        }
+        else if( choose_s == "challenge")
+        {
+            ui_ChallengeContent.SetActive(true);
+            Text_Challenge_Threshold_Content.text = task_temp.GetThreshold();
+            Text_Challenge_Request_Content.text = task_temp.GetRequest();
+            Text_Challenge_Reward_Content.text = task_temp.GetReward();
+            Text_Challenge_Punishment_Content.text = task_temp.GetPunishment();
+        }
+
+        GameObject_Start.SetActive(true);
 
         if (task_temp.GetStatus() == 2 && choose_s == "challenge")
             Button_Start.interactable = true;

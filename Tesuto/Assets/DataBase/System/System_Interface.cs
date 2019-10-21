@@ -37,7 +37,7 @@ static class System_Interface{
 
     #region Select Learn
     public static string SelectLearn_Info_Text, SelectLearn_Info_Practice_Text, SelectLearn_Info_Challenge_Text;
-    public static string SelectLean_Button_Practice_Text, SelectLean_Button_Challenge_Text, SelectLean_Button_Back_Text, SelectLearn_Button_Start_Text;
+    public static string SelectLearn_Button_Practice_Text, SelectLearn_Button_Challenge_Text, SelectLearn_Button_Back_Text, SelectLearn_Button_Start_Text;
     public static string SelectLearn_Practice_QuestionType_Text, SelectLearn_Practice_Range_Text, SelectLearn_Practice_Reward_Text, SelectLearn_Practice_Punishment_Text, SelectLearn_Practice_HighestScore_Text;  //Practice
     public static string SelectLearn_Challenge_Threshold_Text, SelectLearn_Challenge_Request_Text, SelectLearn_Challenge_Reward_Text, SelectLearn_Challenge_Punishment_Text;  //Challenge
     #endregion
@@ -53,7 +53,34 @@ static class System_Interface{
     #region Material
     public static string Material_Button_Back_Text, Material_Info_Text, Material_Info_PageUp_Text, Material_Info_PageDown_Text, Material_Info_PageRight_Text, Material_Info_PageLeft_Text, Material_Info_Voice_Text;
     #endregion
-    
+
+    #region Select Battle
+    public static string SelectBattle_Info_Text, SelectBattle_Info_Practice_Text, SelectBattle_Info_Challenge_Text;
+    public static string SelectBattle_Button_Practice_Text, SelectBattle_Button_Challenge_Text, SelectBattle_Button_Back_Text, SelectBattle_Button_Start_Text;
+    public static string SelectBattle_Practice_QuestionType_Text, SelectBattle_Practice_Range_Text, SelectBattle_Practice_Reward_Text, SelectBattle_Practice_Punishment_Text;  //Practice
+    public static string SelectBattle_Practice_Time_Text, SelectBattle_Practice_LP_Text, SelectBattle_Practice_Deck_Text;  //Practice Enemy
+    public static string SelectBattle_Challenge_Threshold_Text, SelectBattle_Challenge_Request_Text, SelectBattle_Challenge_Reward_Text, SelectBattle_Challenge_Punishment_Text;  //Challenge
+    public static string SelectBattle_Learner_LP_Text, SelectBattle_Learner_Deck_Text;
+    #endregion
+
+    #region Battle
+    //Init
+    public static string Battle_LP_A_Text, Battle_LP_B_Text, Battle_Deck_A_Text, Battle_Deck_B_Text, Battle_CardType_Text, Battle_Effect_Text, Battle_Message_Text;
+    //Question
+    public static string Battle_Question_Choose,Battle_Question_Right, Battle_Question_Wrong, Battle_Question_Start_Text, Battle_Question_GameOver, Battle_Question_Settlement;
+    //Main
+    public static string Battle_Main_ChooseCard;
+    public static string Battle_Main_Button_Summon_Text, Battle_Main_Button_Fight_Text, Battle_Main_Button_Surrender_Text;
+    //Battle
+    public static string Battle_Battle_PlayerLPAdd, Battle_Battle_EnemyLPAdd, Battle_Battle_PlayerLPDec, Battle_Battle_EnemyLPDec, Battle_Battle_Tie;
+    //End
+    public static string Battle_Battle_Next_Text,Battle_Battle_GameOver_Text, Battle_Battle_Settlement_Text;
+    public static string Battle_Battle_PlayerWin_Text, Battle_Battle_EnemyWin_Text, Battle_Battle_PlayDeckWin_Text, Battle_Battle_EnemyDeckWin_Text;
+    //Settlement
+    public static string Battle_SettlementQuestionNum_Text, Battle_SettlementQuestion_Text, Battle_SettlementAnswer_Text, Battle_SettlementChoose_Text, Battle_SettlementFeedback_Text;
+    public static string Battle_PracticeFlag_Success, Battle_PracticeFlag_Failed, Battle_ChallengeFlag_Success, Battle_ChallengeFlag_Failed;
+    #endregion
+
     #region Badges
     public static string Badges_Info_Text;
     #endregion
@@ -188,14 +215,14 @@ static class System_Interface{
             case "SelectLearn_Info_Challenge_Text":
                 SelectLearn_Info_Challenge_Text = s;
                 break;
-            case "SelectLean_Button_Practice_Text":
-                SelectLean_Button_Practice_Text = s;
+            case "SelectLearn_Button_Practice_Text":
+                SelectLearn_Button_Practice_Text = s;
                 break;
-            case "SelectLean_Button_Challenge_Text":
-                SelectLean_Button_Challenge_Text = s;
+            case "SelectLearn_Button_Challenge_Text":
+                SelectLearn_Button_Challenge_Text = s;
                 break;
-            case "SelectLean_Button_Back_Text":
-                SelectLean_Button_Back_Text = s;
+            case "SelectLearn_Button_Back_Text":
+                SelectLearn_Button_Back_Text = s;
                 break;
             case "SelectLearn_Practice_QuestionType_Text":
                 SelectLearn_Practice_QuestionType_Text = s;
@@ -310,6 +337,192 @@ static class System_Interface{
                 break;
             case "Material_Info_Voice_Text":
                 Material_Info_Voice_Text = s;
+                break;
+            #endregion
+
+            #region SelectBattle
+            case "SelectBattle_Info_Text":
+                SelectBattle_Info_Text = s;
+                break;
+            case "SelectBattle_Info_Practice_Text":
+                SelectBattle_Info_Practice_Text = s;
+                break;
+            case "SelectBattle_Info_Challenge_Text":
+                SelectBattle_Info_Challenge_Text = s;
+                break;
+            case "SelectBattle_Button_Practice_Text":
+                SelectBattle_Button_Practice_Text = s;
+                break;
+            case "SelectBattle_Button_Challenge_Text":
+                SelectBattle_Button_Challenge_Text = s;
+                break;
+            case "SelectBattle_Button_Back_Text":
+                SelectBattle_Button_Back_Text = s;
+                break;
+            case "SelectBattle_Practice_QuestionType_Text":
+                SelectBattle_Practice_QuestionType_Text = s;
+                break;
+            case "SelectBattle_Practice_Range_Text":
+                SelectBattle_Practice_Range_Text = s;
+                break;
+            case "SelectBattle_Practice_Reward_Text":
+                SelectBattle_Practice_Reward_Text = s;
+                break;
+            case "SelectBattle_Practice_Punishment_Text":
+                SelectBattle_Practice_Punishment_Text = s;
+                break;
+            case "SelectBattle_Practice_Time_Text":
+                SelectBattle_Practice_Time_Text = s;
+                break;
+            case "SelectBattle_Practice_LP_Text":
+                SelectBattle_Practice_LP_Text = s;
+                break;
+            case "SelectBattle_Practice_Deck_Text":
+                SelectBattle_Practice_Deck_Text = s;
+                break;
+            case "SelectBattle_Challenge_Threshold_Text":
+                SelectBattle_Challenge_Threshold_Text = s;
+                break;
+            case "SelectBattle_Challenge_Request_Text":
+                SelectBattle_Challenge_Request_Text = s;
+                break;
+            case "SelectBattle_Challenge_Reward_Text":
+                SelectBattle_Challenge_Reward_Text = s;
+                break;
+            case "SelectBattle_Challenge_Punishment_Text":
+                SelectBattle_Challenge_Punishment_Text = s;
+                break;
+            case "SelectBattle_Button_Start_Text":
+                SelectBattle_Button_Start_Text = s;
+                break;
+            case "SelectBattle_Learner_LP_Text":
+                SelectBattle_Learner_LP_Text = s;
+                break;
+            case "SelectBattle_Learner_Deck_Text":
+                SelectBattle_Learner_Deck_Text = s;
+                break;
+            #endregion
+
+            #region Battle
+                //First
+            case "Battle_LP_A_Text":
+                Battle_LP_A_Text = s;
+                break;
+            case "Battle_LP_B_Text":
+                Battle_LP_B_Text = s;
+                break;
+            case "Battle_Deck_A_Text":
+                Battle_Deck_A_Text = s;
+                break;
+            case "Battle_Deck_B_Text":
+                Battle_Deck_B_Text = s;
+                break;
+            case "Battle_CardType_Text":
+                Battle_CardType_Text = s;
+                break;
+            case "Battle_Effect_Text":
+                Battle_Effect_Text = s;
+                break;
+            case "Battle_Message_Text":
+                Battle_Message_Text = s;
+                break;
+            //Question Phase
+            case "Battle_Question_Choose":
+                Battle_Question_Choose = s;
+                break;
+            case "Battle_Question_Right":
+                Battle_Question_Right = s;
+                break;
+            case "Battle_Question_Wrong":
+                Battle_Question_Wrong = s;
+                break;
+            case "Battle_Question_Start_Text":
+                Battle_Question_Start_Text = s;
+                break;
+            case "Battle_Question_GameOver":
+                Battle_Question_GameOver = s;
+                break;
+            case "Battle_Question_Settlement":
+                Battle_Question_Settlement = s;
+                break;
+            //Main Phase
+            case "Battle_Main_ChooseCard":
+                Battle_Main_ChooseCard = s;
+                break;
+            case "Battle_Main_Button_Summon_Text":
+                Battle_Main_Button_Summon_Text = s;
+                break;
+            case "Battle_Main_Button_Fight_Text":
+                Battle_Main_Button_Fight_Text = s;
+                break;
+            case "Battle_Main_Button_Surrender_Text":
+                Battle_Main_Button_Surrender_Text = s;
+                break;
+            //Battle Phase
+            case "Battle_Battle_PlayerLPAdd":
+                Battle_Battle_PlayerLPAdd = s;
+                break;
+            case "Battle_Battle_EnemyLPAdd":
+                Battle_Battle_EnemyLPAdd = s;
+                break;
+            case "Battle_Battle_PlayerLPDec":
+                Battle_Battle_PlayerLPDec = s;
+                break;
+            case "Battle_Battle_EnemyLPDec":
+                Battle_Battle_EnemyLPDec = s;
+                break;
+            case "Battle_Battle_Tie":
+                Battle_Battle_Tie = s;
+                break;
+            //End
+            case "Battle_Battle_Next_Text":
+                Battle_Battle_Next_Text = s;
+                break;
+            case "Battle_Battle_GameOver_Text":
+                Battle_Battle_GameOver_Text = s;
+                break;
+            case "Battle_Battle_Settlement_Text":
+                Battle_Battle_Settlement_Text = s;
+                break;
+            case "Battle_Battle_PlayerWin_Text":
+                Battle_Battle_PlayerWin_Text = s;
+                break;
+            case "Battle_Battle_EnemyWin_Text":
+                Battle_Battle_EnemyWin_Text = s;
+                break;
+            case "Battle_Battle_PlayDeckWin_Text":
+                Battle_Battle_PlayDeckWin_Text = s;
+                break;
+            case "Battle_Battle_EnemyDeckWin_Text":
+                Battle_Battle_EnemyDeckWin_Text = s;
+                break;
+            //Settlement
+            case "Battle_SettlementQuestionNum_Text":
+                Battle_SettlementQuestionNum_Text = s;
+                break;
+            case "Battle_SettlementQuestion_Text":
+                Battle_SettlementQuestion_Text = s;
+                break;
+            case "Battle_SettlementAnswer_Text":
+                Battle_SettlementAnswer_Text = s;
+                break;
+            case "Battle_SettlementChoose_Text":
+                Battle_SettlementChoose_Text = s;
+                break;
+            case "Battle_SettlementFeedback_Text":
+                Battle_SettlementFeedback_Text = s;
+                break;
+            case "Battle_PracticeFlag_Success":
+                Battle_PracticeFlag_Success = s;
+                break;
+            case "Battle_PracticeFlag_Failed":
+                Battle_PracticeFlag_Failed = s;
+                break;
+            case "Battle_ChallengeFlag_Success":
+                Battle_ChallengeFlag_Success = s;
+                break;
+            case "Battle_ChallengeFlag_Failed":
+                Battle_ChallengeFlag_Failed = s;
                 break;
             #endregion
 

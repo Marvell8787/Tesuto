@@ -18,13 +18,14 @@ public class UI_Select_Battle : MonoBehaviour {
     EventTriggerType EPExit = EventTriggerType.PointerExit;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
-
+    
     #region Select
-    public GameObject ui_Select, ui_Content;
+    public GameObject ui_Select, ui_Content, ui_ChallengeContent;
     public GameObject[] GameObject_Battle = new GameObject[3];
     public Text[] Text_Battle = new Text[3];
     public Text Text_Info;
-    public GameObject GameObject_Practice, GameObject_Challenge;
+    public GameObject GameObject_Practice, GameObject_Challenge, GameObject_Start;
+    public Text Button_Practice_Text, Button_Challenge_Text, Button_Start_Text,Button_Back_Text;
     public Button Button_Select_Cancel;
     #endregion
 
@@ -32,6 +33,12 @@ public class UI_Select_Battle : MonoBehaviour {
     public Button Button_Content_Cancel;
     public Text Text_QuestionType, Text_Range, Text_Reward, Text_Punishment, Text_Time, Text_LP, Text_Deck;
     public Text Text_QuestionType_Content, Text_Range_Content, Text_Reward_Content, Text_Punishment_Content, Text_Time_Content, Text_LP_Content, Text_Deck_Content;
+    #endregion
+
+    #region ChallengeContent
+    public Button Button_Challenge_Content_Cancel;
+    public Text Text_Challenge_Threshold, Text_Challenge_Request, Text_Challenge_Reward, Text_Challenge_Punishment;
+    public Text Text_Challenge_Threshold_Content, Text_Challenge_Request_Content, Text_Challenge_Reward_Content, Text_Challenge_Punishment_Content;
     #endregion
 
     #region Button
@@ -43,11 +50,35 @@ public class UI_Select_Battle : MonoBehaviour {
     #endregion
 
     #region Learner
+    public Text Text_Learner_LP;
     public Text Text_Learner_Deck;
+    public Text Text_Learner_Deck_Num;
     #endregion
 
     void Start()
     {
+        Button_Practice_Text.text = System_Interface.SelectBattle_Button_Practice_Text;
+        Button_Challenge_Text.text = System_Interface.SelectBattle_Button_Challenge_Text;
+        Button_Back_Text.text = System_Interface.SelectBattle_Button_Back_Text;
+        Text_Info.text = System_Interface.SelectBattle_Info_Text;
+
+        Text_QuestionType.text = System_Interface.SelectBattle_Practice_QuestionType_Text;
+        Text_Range.text = System_Interface.SelectBattle_Practice_Range_Text;
+        Text_Reward.text = System_Interface.SelectBattle_Practice_Reward_Text;
+        Text_Punishment.text = System_Interface.SelectBattle_Practice_Punishment_Text;
+        Text_Time.text = System_Interface.SelectBattle_Practice_Time_Text;
+        Text_LP.text = System_Interface.SelectBattle_Practice_LP_Text;
+        Text_Deck.text = System_Interface.SelectBattle_Practice_Deck_Text;
+        Button_Start_Text.text = System_Interface.SelectBattle_Button_Start_Text;
+
+        Text_Challenge_Threshold.text = System_Interface.SelectBattle_Challenge_Threshold_Text;
+        Text_Challenge_Request.text = System_Interface.SelectBattle_Challenge_Request_Text;
+        Text_Challenge_Reward.text = System_Interface.SelectBattle_Challenge_Reward_Text;
+        Text_Challenge_Punishment.text = System_Interface.SelectBattle_Challenge_Punishment_Text;
+
+        Text_Learner_LP.text = System_Interface.SelectBattle_Learner_LP_Text;
+        Text_Learner_Deck.text = System_Interface.SelectBattle_Learner_Deck_Text;
+
         Battle_Data.Battle_Init();
         Battle_Class[] battle_temp = new Battle_Class[3];
         for (int i = 0; i < 3; i++)
@@ -80,27 +111,28 @@ public class UI_Select_Battle : MonoBehaviour {
 
         Button_Select_Cancel.onClick.AddListener(Select_Cancel);
         Button_Content_Cancel.onClick.AddListener(Content_Cancel);
+        Button_Challenge_Content_Cancel.onClick.AddListener(Content_Cancel);
 
-        Text_Learner_Deck.text = Learner_Data.Learner_GetData("Cards_Num").ToString();
+        Text_Learner_Deck_Num.text = Learner_Data.Learner_GetData("Cards_Num").ToString();
     }
 
     #region Select_Battle PointerEnter
     void Enter_Practice(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是練習\n點擊可開啟所有戰鬥來練習";
+        Text_Info.text = System_Interface.SelectBattle_Info_Practice_Text;
     }
     void Enter_Challenge(BaseEventData data)
     {
         choose.Play();
-        Text_Info.text = "這是挑戰\n點擊可開啟接下的任務來挑戰";
+        Text_Info.text = System_Interface.SelectBattle_Info_Challenge_Text;
     }
     #endregion
 
     #region Select_Battle PointerExit
     void Exit(BaseEventData data)
     {
-        Text_Info.text = "請選擇要練習或挑戰\n";
+        Text_Info.text = System_Interface.SelectBattle_Info_Text;
     }
     #endregion
 
@@ -112,7 +144,6 @@ public class UI_Select_Battle : MonoBehaviour {
             ok.Play();
             choose_n = 0;
             ShowContent(0);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 5;
         }
 
@@ -124,7 +155,6 @@ public class UI_Select_Battle : MonoBehaviour {
             ok.Play();
             choose_n = 1;
             ShowContent(1);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 15;
         }
     }
@@ -135,7 +165,6 @@ public class UI_Select_Battle : MonoBehaviour {
             ok.Play();
             choose_n = 2;
             ShowContent(2);
-            ui_Content.SetActive(true);
             n1 = 1; n2 = 20;
         }
     }
@@ -146,12 +175,15 @@ public class UI_Select_Battle : MonoBehaviour {
         cancel.Play();
         ui_Select.SetActive(false);
         ui_Content.SetActive(false);
-
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
     }
     void Content_Cancel()
     {
         cancel.Play();
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
     }
     void Back()
     {
@@ -180,6 +212,8 @@ public class UI_Select_Battle : MonoBehaviour {
     {
         Battle_Class[] battle_temp = new Battle_Class[3];
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
         ok.Play();
         ui_Select.SetActive(true);
         choose_s = "practice";
@@ -194,6 +228,8 @@ public class UI_Select_Battle : MonoBehaviour {
     {
         Battle_Class[] battle_temp = new Battle_Class[3];
         ui_Content.SetActive(false);
+        ui_ChallengeContent.SetActive(false);
+        GameObject_Start.SetActive(false);
         ok.Play();
         Task_Class task_temp = new Task_Class();
         ui_Select.SetActive(true);
@@ -216,14 +252,27 @@ public class UI_Select_Battle : MonoBehaviour {
         Task_Class task_temp = new Task_Class();
         task_temp = Task_Data.Battle_Get(n);
 
-        Text_QuestionType_Content.text = battle_temp.GetQuestionType();
-        Text_Range_Content.text = battle_temp.GetRange();
-        Text_Reward_Content.text = battle_temp.GetReward();
-        Text_Punishment_Content.text = battle_temp.GetPunishment();
-        Text_Time_Content.text = battle_temp.GetTime();
-        Text_LP_Content.text = battle_temp.GetLP();
-        Text_Deck_Content.text = battle_temp.GetDeck();
+        if (choose_s == "practice")
+        {
+            ui_Content.SetActive(true);
+            Text_QuestionType_Content.text = battle_temp.GetQuestionType();
+            Text_Range_Content.text = battle_temp.GetRange();
+            Text_Reward_Content.text = battle_temp.GetReward();
+            Text_Punishment_Content.text = battle_temp.GetPunishment();
+            Text_Time_Content.text = battle_temp.GetTime();
+            Text_LP_Content.text = battle_temp.GetLP();
+            Text_Deck_Content.text = battle_temp.GetDeck();
+        }
+        else if (choose_s == "challenge")
+        {
+            ui_ChallengeContent.SetActive(true);
+            Text_Challenge_Threshold_Content.text = task_temp.GetThreshold();
+            Text_Challenge_Request_Content.text = task_temp.GetRequest();
+            Text_Challenge_Reward_Content.text = task_temp.GetReward();
+            Text_Challenge_Punishment_Content.text = task_temp.GetPunishment();
+        }
 
+        GameObject_Start.SetActive(true);
 
         if (task_temp.GetStatus() == 2 && choose_s == "challenge")
             Button_Start.interactable = true;

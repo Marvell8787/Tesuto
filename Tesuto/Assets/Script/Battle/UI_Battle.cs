@@ -69,6 +69,7 @@ public class UI_Battle : MonoBehaviour {
 
     #region Battle Phase
     public Button Button_Fight, Button_Summon, Button_Surrender;
+    public Text Button_Summon_Text, Button_Fight_Text,  Button_Surrender_Text;
     #endregion
 
     #region Battle Question
@@ -103,6 +104,28 @@ public class UI_Battle : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Init
+            //Info Interface
+        Text_LP_A.text = System_Interface.Battle_LP_A_Text;
+        Text_LP_B.text = System_Interface.Battle_LP_B_Text;
+        Text_Deck_A.text = System_Interface.Battle_Deck_A_Text;
+        Text_Deck_B.text = System_Interface.Battle_Deck_B_Text;
+        Text_CardType.text = System_Interface.Battle_CardType_Text;
+        Text_Effect.text = System_Interface.Battle_Effect_Text;
+        Text_Message.text = System_Interface.Battle_Message_Text;
+            //Question Interface
+        Text_Start.text = System_Interface.Battle_Question_Start_Text;
+            //Main Interface
+        Button_Summon_Text.text = System_Interface.Battle_Main_Button_Summon_Text;
+        Button_Fight_Text.text = System_Interface.Battle_Main_Button_Fight_Text;
+        Button_Surrender_Text.text = System_Interface.Battle_Main_Button_Surrender_Text;
+        Text_Next.text = System_Interface.Battle_Battle_Next_Text;
+            //Settlement Interface
+        S_QNum.text = System_Interface.Battle_SettlementQuestionNum_Text;
+        S_Question.text = System_Interface.Battle_SettlementQuestion_Text;
+        S_Choose.text = System_Interface.Battle_SettlementChoose_Text;
+        S_Answer.text = System_Interface.Battle_SettlementAnswer_Text;
+        S_Feedback.text = System_Interface.Battle_SettlementFeedback_Text;
+
         Player = Player_Data.Player_Get(0);
         Enemy = Player_Data.Player_Get(1);
 
@@ -154,17 +177,6 @@ public class UI_Battle : MonoBehaviour {
             CancelInvoke("timer");
             Text_Count.text = "";
             GameObject_Count.SetActive(true);
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Message.text = "請答題!";
-                    break;
-                case 1:
-                    Text_Message.text = "Question !";
-                    break;
-                default:
-                    break;
-            }
             Question_Class question_temp = new Question_Class();
             Question_Num = 0; //init
             question_temp = Question_Data.Question_Get(0);
@@ -174,7 +186,9 @@ public class UI_Battle : MonoBehaviour {
             Text_Ans[0].text = Question_Data.GetButton_Ans(0);
             Text_Ans[1].text = Question_Data.GetButton_Ans(1);
             Text_Ans[2].text = Question_Data.GetButton_Ans(2);
+
             ui_Question.SetActive(true);
+            Text_ROW.text = System_Interface.Battle_Question_Choose;
         }
     }
     #endregion
@@ -219,35 +233,14 @@ public class UI_Battle : MonoBehaviour {
         {
             Question_Data.ChangeFeedBack("O", Question_Num);
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
-
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_ROW.text = "答對了 !";
-                    break;
-                case 1:
-                    Text_ROW.text = "You're right !";
-                    break;
-                default:
-                    break;
-            }
+            Text_ROW.text = System_Interface.Battle_Question_Right;
         }
         else
         {
             Question_Data.ChangeFeedBack("X", Question_Num);
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
+            Text_ROW.text = System_Interface.Battle_Question_Wrong;
 
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_ROW.text = "答錯了 !";
-                    break;
-                case 1:
-                    Text_ROW.text = "You're wrong !";
-                    break;
-                default:
-                    break;
-            }
             Player.ChangeLP(Player.GetLP() - 5);
             Text_LP_A_Num.text = Player.GetLP().ToString();
         }
@@ -256,30 +249,8 @@ public class UI_Battle : MonoBehaviour {
         {
             GameObject_Next.SetActive(true);
             Button_Next.interactable = true;
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_ROW.text = "由於生命值歸0，遊戲結束!";
-                    break;
-                case 1:
-                    Text_ROW.text = "Because Player's LP is 0,so game is Over !";
-                    break;
-                default:
-                    break;
-            }
-            Text_Count.color = new Color32(255, 0, 0, 255);
-
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Next.text = "結束";
-                    break;
-                case 1:
-                    Text_Next.text = "END";
-                    break;
-                default:
-                    break;
-            }
+            Text_ROW.text = System_Interface.Battle_Question_GameOver;
+            Text_Next.text = System_Interface.Battle_Question_Settlement;
         }
         else
         {
@@ -294,17 +265,7 @@ public class UI_Battle : MonoBehaviour {
     {
         ui_Question.SetActive(false);
         Button_Surrender.interactable = true;
-        switch (System_Setting.Language)
-        {
-            case 0:
-                Text_Message.text = "請出牌!";
-                break;
-            case 1:
-                Text_Message.text = "Use your Card !";
-                break;
-            default:
-                break;
-        }
+        Text_Message.text = System_Interface.Battle_Main_ChooseCard;
         ShowHand(0);
     }
     void Summon()
@@ -627,15 +588,15 @@ public class UI_Battle : MonoBehaviour {
         {
             case 19:
                 Player.ChangeLP(Player.GetLP() + 2);
-                Text_Message.text += "\n我方恢復 2點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_PlayerLPAdd + " 2 ";
                 break;
             case 20:
                 Player.ChangeLP(Player.GetLP() + 3);
-                Text_Message.text += "\n我方恢復 3點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_PlayerLPAdd + " 3 ";
                 break;
             case 21:
                 Player.ChangeLP(Player.GetLP() + 5);
-                Text_Message.text += "\n我方恢復 5點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_PlayerLPAdd + " 5 ";
                 break;
             default:
                 break;
@@ -644,15 +605,15 @@ public class UI_Battle : MonoBehaviour {
         {
             case 19:
                 Enemy.ChangeLP(Enemy.GetLP() + 2);
-                Text_Message.text += "\n敵方恢復 2點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_EnemyLPAdd + " 2 ";
                 break;
             case 20:
                 Enemy.ChangeLP(Enemy.GetLP() + 3);
-                Text_Message.text += "\n敵方恢復 3點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_EnemyLPAdd + " 3 ";
                 break;
             case 21:
                 Enemy.ChangeLP(Enemy.GetLP() + 5);
-                Text_Message.text += "\n敵方恢復 5點 LP";
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_EnemyLPAdd + " 5 ";
                 break;
             default:
                 break;
@@ -664,47 +625,16 @@ public class UI_Battle : MonoBehaviour {
         if (aatk > batk)
         {
             Enemy.DecLP((aatk - batk));
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Message.text += "\n敵方LP - " + (aatk - batk);
-                    break;
-                case 1:
-                    Text_Message.text += "\nCom LP - " + (aatk - batk);
-
-                    break;
-                default:
-                    break;
-            }
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_EnemyLPDec + " " + (aatk - batk);
         }
         else if (batk > aatk)
         {
             Player.DecLP((batk - aatk));
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Message.text += "\n我方LP - " + (batk - aatk);
-                    break;
-                case 1:
-                    Text_Message.text += "\nPlayer LP - " + (batk - aatk);
-                    break;
-                default:
-                    break;
-            }
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_PlayerLPDec + " " + (batk - aatk);
         }
         else
         {
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Message.text += "\n平手";
-                    break;
-                case 1:
-                    Text_Message.text += "\nIt;s tie";
-                    break;
-                default:
-                    break;
-            }
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_Tie;
         }
         Text_LP_A_Num.text = Player.GetLP().ToString();
         Text_LP_B_Num.text = Enemy.GetLP().ToString();
@@ -712,42 +642,17 @@ public class UI_Battle : MonoBehaviour {
         if (Player.GetLP() < 1)
         {
             GameObject_Count.SetActive(true);
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Next.text = "結束";
-                    Text_Message.text += "\n遊戲結束!";
-                    Text_Count.text = "你輸了!";
-                    break;
-                case 1:
-                    Text_Next.text = "END";
-                    Text_Message.text += "\nGame Over !";
-                    Text_Count.text = "You Lose !";
-                    break;
-                default:
-                    break;
-            }
+            Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+            Text_Count.text = System_Interface.Battle_Battle_EnemyWin_Text;
             Text_Count.color = new Color32(255, 0, 0, 255);
         }
         else if (Enemy.GetLP() < 1)
         {
             GameObject_Count.SetActive(true);
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Next.text = "結束";
-                    Text_Message.text += "\n遊戲結束!";
-                    Text_Count.text = "你贏了!";
-                    break;
-                case 1:
-                    Text_Next.text = "END";
-                    Text_Message.text += "\nGame Over !";
-                    Text_Count.text = "You Win !";
-                    break;
-                default:
-                    break;
-            }
-
+            Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+            Text_Count.text = System_Interface.Battle_Battle_PlayerWin_Text;
             Text_Count.color = new Color32(255, 0, 0, 255);
         }
         else if (Question_Num == Question_total)
@@ -755,82 +660,34 @@ public class UI_Battle : MonoBehaviour {
             if (Player.GetLP() >= Enemy.GetLP())
             {
                 GameObject_Count.SetActive(true);
-                switch (System_Setting.Language)
-                {
-                    case 0:
-                        Text_Next.text = "結束";
-                        Text_Message.text += "\n遊戲結束!";
-                        Text_Count.text = "你贏了!";
-                        break;
-                    case 1:
-                        Text_Next.text = "END";
-                        Text_Message.text += "Game Over !";
-                        Text_Count.text = "You Win !";
-                        break;
-                    default:
-                        break;
-                }
+                Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+                Text_Count.text = System_Interface.Battle_Battle_PlayerWin_Text;
                 Text_Count.color = new Color32(255, 0, 0, 255);
             }
             else
             {
                 GameObject_Count.SetActive(true);
-                switch (System_Setting.Language)
-                {
-                    case 0:
-                        Text_Next.GetComponentInChildren<Text>().text = "結束";
-                        Text_Message.text += "\n遊戲結束!";
-                        Text_Count.text = "你輸了!";
-                        break;
-                    case 1:
-                        Text_Next.text = "END";
-                        Text_Message.text += "Game Over !";
-                        Text_Count.text = "You Lose !";
-                        break;
-                    default:
-                        break;
-                }
+                Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+                Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+                Text_Count.text = System_Interface.Battle_Battle_EnemyWin_Text;
                 Text_Count.color = new Color32(255, 0, 0, 255);
             }
         }
         else if (Player.GetDeck_Num() == 0)
         {
             GameObject_Count.SetActive(true);
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Next.text = "結束";
-                    Text_Message.text += "\n遊戲結束 !";
-                    Text_Count.text = "我方牌組已抽完，你輸了 !";
-                    break;
-                case 1:
-                    Text_Next.text = "結束";
-                    Text_Message.text += "\n遊戲結束 !";
-                    Text_Count.text = "我方牌組已抽完，你輸了 !";
-                    break;
-                default:
-                    break;
-            }
+            Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+            Text_Count.text = System_Interface.Battle_Battle_EnemyDeckWin_Text;
             Text_Count.color = new Color32(255, 0, 0, 255);
         }
         else if (Enemy.GetDeck_Num() == 0)
         {
             GameObject_Count.SetActive(true);
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Next.text = "結束";
-                    Text_Message.text += "遊戲結束 !";
-                    Text_Count.text = "敵方牌組已抽完，你贏了!";
-                    break;
-                case 1:
-                    Text_Next.text = "END";
-                    Text_Message.text += "\nGame Over !";
-                    Text_Count.text = "Com's Deck is gone !";
-                    break;
-                default:
-                    break;
-            }
+            Text_Next.text = System_Interface.Battle_Battle_Settlement_Text;
+            Text_Message.text += "\n" + System_Interface.Battle_Battle_GameOver_Text;
+            Text_Count.text = System_Interface.Battle_Battle_PlayDeckWin_Text;
             Text_Count.color = new Color32(255, 0, 0, 255);
         }
 
@@ -921,17 +778,6 @@ public class UI_Battle : MonoBehaviour {
             }
             Text_ATK_A_Num.text = "0";
             Text_ATK_B_Num.text = "0";
-            switch (System_Setting.Language)
-            {
-                case 0:
-                    Text_Message.text = "請答題!";
-                    break;
-                case 1:
-                    Text_Message.text = "Question !";
-                    break;
-                default:
-                    break;
-            }
             //抽牌
             Player_Data.Draw(0, 1); //玩家抽1
             Player_Data.Draw(1, 1); //電腦抽1
@@ -951,7 +797,8 @@ public class UI_Battle : MonoBehaviour {
                 Text_Ans[i].text = Question_Data.GetButton_Ans(i);
             }
             ui_Question.SetActive(true);
-            Text_ROW.text = "";
+            Text_Time.text = (Question_Num+1).ToString();
+            Text_ROW.text = System_Interface.Battle_Question_Choose;
             Text_Answer.text = "Ans：";
         }
     }
@@ -976,7 +823,7 @@ public class UI_Battle : MonoBehaviour {
         if (challenge == 1 && n == 0)
         {
             Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-            Flag.text = "挑戰失敗！";
+            Flag.text = System_Interface.Battle_ChallengeFlag_Failed;
             Mechanism_Data.Punishment("Task",6+ hard);
             Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
             Learner_Data.Learner_Add("Task_Fail", 1);
@@ -985,7 +832,7 @@ public class UI_Battle : MonoBehaviour {
         else if (challenge == 1 && n == 1)
         {
             Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-            Flag.text = "挑戰成功！";
+            Flag.text = System_Interface.Battle_ChallengeFlag_Success;
             Mechanism_Data.Reward("Task", 6 + hard);
             Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
             Learner_Data.Learner_Add("Task_Succes", 1);
@@ -994,16 +841,16 @@ public class UI_Battle : MonoBehaviour {
         else if (challenge == 0 && n == 0)
         {
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
-            Flag.text = "練習失敗！";
-            Mechanism_Data.Punishment("Battle", 6 + hard);
+            Flag.text = System_Interface.Battle_PracticeFlag_Failed ;
+            Mechanism_Data.Punishment("Battle", hard);
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString();
             Learner_Data.Learner_Add("Battle_Lose", 1);
         }
         else if (challenge == 0 && n == 1)
         {
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
-            Flag.text = "練習成功！";
-            Mechanism_Data.Reward("Battle", 6 + hard);
+            Flag.text = System_Interface.Battle_ChallengeFlag_Success;
+            Mechanism_Data.Reward("Battle", hard);
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString();
             Learner_Data.Learner_Add("Battle_Win", 1);
         }
@@ -1098,6 +945,7 @@ public class UI_Battle : MonoBehaviour {
         SceneManager.LoadScene("Main");
     }
     #endregion
+
     void ShowHand(int s)
     {
         for (int i = 0; i < 5; i++)
