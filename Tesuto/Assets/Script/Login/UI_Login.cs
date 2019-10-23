@@ -19,7 +19,7 @@ public class UI_Login : MonoBehaviour {
 
     #region Login
     public Button Button_Login;
-    public InputField InputField_Usename, InputField_Password, InputField_NickName;
+    public InputField InputField_Usename, InputField_Password;
     #endregion
 
     #region Setting
@@ -31,7 +31,7 @@ public class UI_Login : MonoBehaviour {
     public Text Start_Text, Setting_Text, Thank_Text;
     #endregion
     #region ui_Start
-    public Text Username_Placeholder, Password_Placeholder, NickName_Placeholder, Login_Text, Login_Message;
+    public Text Username_Placeholder, Password_Placeholder, Login_Text, Login_Message;
     #endregion
     #region ui_Setting
     public Text Language_Text, Version_Text;
@@ -139,7 +139,6 @@ public class UI_Login : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         if (ml.state == 1)
         {
-            System_Setting.NickName = InputField_NickName.text;
             Task_Data.Task_Init();
             Card_Data.Card_Init();
             Vocabulary_Data.Vocabulary_Init();
@@ -255,7 +254,6 @@ public class UI_Login : MonoBehaviour {
         Thank_Text.text = System_Interface.Thank_Text;
         Username_Placeholder.text = System_Interface.Username_Placeholder;
         Password_Placeholder.text = System_Interface.Password_Placeholder;
-        NickName_Placeholder.text = System_Interface.NickName_Placeholder;
         Login_Text.text = System_Interface.Login_Text;
         Login_Message.text = System_Interface.Login_Message;
         Language_Text.text = System_Interface.Language_Text;

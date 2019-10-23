@@ -849,7 +849,7 @@ public class UI_Battle : MonoBehaviour {
         else if (challenge == 0 && n == 1)
         {
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
-            Flag.text = System_Interface.Battle_ChallengeFlag_Success;
+            Flag.text = System_Interface.Battle_PracticeFlag_Success;
             Mechanism_Data.Reward("Battle", hard);
             Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString();
             Learner_Data.Learner_Add("Battle_Win", 1);

@@ -10,7 +10,7 @@ static class System_Interface{
     public static string Start_Text, Setting_Text, Thank_Text;
     #endregion
     #region ui_Start
-    public static string Username_Placeholder, Password_Placeholder, NickName_Placeholder, Login_Text, Login_Message;
+    public static string Username_Placeholder, Password_Placeholder, Login_Text, Login_Message;
     #endregion
     #region ui_Setting
     public static string Language_Text, Version_Text;
@@ -30,9 +30,9 @@ static class System_Interface{
     public static string Task_Threshold_Text, Task_Request_Text, Task_Reward_Text, Task_Punishment_Text;
     #endregion
 
-    #region Leaarn
+    #region Learn
     public static string Learn_Info_Text;
-    public static string Lean_Button_Material_Text, Lean_Button_Level_Text;
+    public static string Learn_Button_Material_Text, Learn_Button_Level_Text;
     #endregion
 
     #region Select Learn
@@ -81,6 +81,30 @@ static class System_Interface{
     public static string Battle_PracticeFlag_Success, Battle_PracticeFlag_Failed, Battle_ChallengeFlag_Success, Battle_ChallengeFlag_Failed;
     #endregion
 
+    #region Profile
+    public static string Profile_Status_Task_Text, Profile_Status_Learn_Text, Profile_Status_Battle_Text;
+    public static string Profile_Status_Success_Text, Profile_Status_Fail_Text, Profile_Status_Num_Text;
+    public static string Profile_Item_Score_Text, Profile_Item_Coin_Text, Profile_Item_Crystal_Text, Profile_Item_V_Text, Profile_Item_C_Text, Profile_Item_S_Text, Profile_Item_RTask_Text, Profile_Item_RLearn_Text, Profile_Item_RBattle_Text;
+    public static string Profile_Item_WTask_Text, Profile_Item_WLearn_Text, Profile_Item_WBattle_Text, Profile_Item_Warning_Text, Profile_Item_YC_Text, Profile_Item_RC_Text;
+    public static string Profile_Button_Back_Text;
+    #endregion
+
+    #region Shop
+    public static string Shop_Button_Buy_Text, Shop_Button_PickUp_Text, Shop_Button_Back_Text;
+    public static string Shop_Buy_Success_Text, Shop_PickUp_Success_Text;
+    public static string Shop_Info_Text;
+    //Item
+    public static string Shop_Item0_Info_Text, Shop_Item1_Info_Text, Shop_Item2_Info_Text, Shop_Item3_Info_Text;
+    public static string Shop_Item4_Info_Text, Shop_Item5_Info_Text, Shop_Item6_Info_Text, Shop_Item7_Info_Text;
+    public static string Shop_Item8_Info_Text, Shop_Item9_Info_Text, Shop_Item10_Info_Text, Shop_Item11_Info_Text;
+    #endregion
+
+    #region Deck
+    public static string Deck_Button_Vanguard_Text, Deck_Button_Center_Text, Deck_Button_Support_Text, Deck_Button_All_Text, Deck_Button_Back_Text;
+    public static string Deck_No_Text, Deck_Type_Text, Deck_Name_Text, Deck_Rarity_Text, Deck_ATK_Text, Deck_Effect_Text;
+    public static string Deck_Info_Text;
+    #endregion
+
     #region Badges
     public static string Badges_Info_Text;
     #endregion
@@ -109,9 +133,6 @@ static class System_Interface{
                 break;
             case "Password_Placeholder":
                 Password_Placeholder = s;
-                break;
-            case "NickName_Placeholder":
-                NickName_Placeholder = s;
                 break;
             case "Login_Text":
                 Login_Text = s;
@@ -197,11 +218,11 @@ static class System_Interface{
             case "Learn_Info_Text":
                 Learn_Info_Text = s;
                 break;
-            case "Lean_Button_Material_Text":
-                Lean_Button_Material_Text = s;
+            case "Learn_Button_Material_Text":
+                Learn_Button_Material_Text = s;
                 break;
-            case "Lean_Button_Level_Text":
-                Lean_Button_Level_Text = s;
+            case "Learn_Button_Level_Text":
+                Learn_Button_Level_Text = s;
                 break;
             #endregion
             
@@ -523,6 +544,171 @@ static class System_Interface{
                 break;
             case "Battle_ChallengeFlag_Failed":
                 Battle_ChallengeFlag_Failed = s;
+                break;
+            #endregion
+
+            #region Profile
+            case "Profile_Status_Task_Text":
+                Profile_Status_Task_Text = s;
+                break;
+            case "Profile_Status_Learn_Text":
+                Profile_Status_Learn_Text = s;
+                break;
+            case "Profile_Status_Battle_Text":
+                Profile_Status_Battle_Text = s;
+                break;
+            case "Profile_Status_Success_Text":
+                Profile_Status_Success_Text = s;
+                break;
+            case "Profile_Status_Fail_Text":
+                Profile_Status_Fail_Text = s;
+                break;
+            case "Profile_Status_Num_Text":
+                Profile_Status_Num_Text = s;
+                break;
+            case "Profile_Item_Score_Text":
+                Profile_Item_Score_Text = s;
+                break;
+            case "Profile_Item_Coin_Text":
+                Profile_Item_Coin_Text = s;
+                break;
+            case "Profile_Item_Crystal_Text":
+                Profile_Item_Crystal_Text = s;
+                break;
+            case "Profile_Item_V_Text":
+                Profile_Item_V_Text = s;
+                break;
+            case "Profile_Item_C_Text":
+                Profile_Item_C_Text = s;
+                break;
+            case "Profile_Item_S_Text":
+                Profile_Item_S_Text = s;
+                break;
+            case "Profile_Item_RTask_Text":
+                Profile_Item_RTask_Text = s;
+                break;
+            case "Profile_Item_RLearn_Text":
+                Profile_Item_RLearn_Text = s;
+                break;
+            case "Profile_Item_RBattle_Text":
+                Profile_Item_RBattle_Text = s;
+                break;
+            case "Profile_Item_WTask_Text":
+                Profile_Item_WTask_Text = s;
+                break;
+            case "Profile_Item_WLearn_Text":
+                Profile_Item_WLearn_Text = s;
+                break;
+            case "Profile_Item_WBattle_Text":
+                Profile_Item_WBattle_Text = s;
+                break;
+            case "Profile_Item_Warning_Text":
+                Profile_Item_Warning_Text = s;
+                break;
+            case "Profile_Item_YC_Text":
+                Profile_Item_YC_Text = s;
+                break;
+            case "Profile_Item_RC_Text":
+                Profile_Item_RC_Text = s;
+                break;
+            case "Profile_Button_Back_Text":
+                Profile_Button_Back_Text = s;
+                break;
+            #endregion
+
+            #region Shop
+            case "Shop_Button_Buy_Text":
+                Shop_Button_Buy_Text = s;
+                break;
+            case "Shop_Button_PickUp_Text":
+                Shop_Button_PickUp_Text = s;
+                break;
+            case "Shop_Button_Back_Text":
+                Shop_Button_Back_Text = s;
+                break;
+            case "Shop_Buy_Success_Text":
+                Shop_Buy_Success_Text = s;
+                break;
+            case "Shop_PickUp_Success_Text":
+                Shop_PickUp_Success_Text = s;
+                break;
+            case "Shop_Info_Text":
+                Shop_Info_Text = s;
+                break;
+            case "Shop_Item0_Info_Text":
+                Shop_Item0_Info_Text = s;
+                break;
+            case "Shop_Item1_Info_Text":
+                Shop_Item1_Info_Text = s;
+                break;
+            case "Shop_Item2_Info_Text":
+                Shop_Item2_Info_Text = s;
+                break;
+            case "Shop_Item3_Info_Text":
+                Shop_Item3_Info_Text = s;
+                break;
+            case "Shop_Item4_Info_Text":
+                Shop_Item4_Info_Text = s;
+                break;
+            case "Shop_Item5_Info_Text":
+                Shop_Item5_Info_Text = s;
+                break;
+            case "Shop_Item6_Info_Text":
+                Shop_Item6_Info_Text = s;
+                break;
+            case "Shop_Item7_Info_Text":
+                Shop_Item7_Info_Text = s;
+                break;
+            case "Shop_Item8_Info_Text":
+                Shop_Item8_Info_Text = s;
+                break;
+            case "Shop_Item9_Info_Text":
+                Shop_Item9_Info_Text = s;
+                break;
+            case "Shop_Item10_Info_Text":
+                Shop_Item10_Info_Text = s;
+                break;
+            case "Shop_Item11_Info_Text":
+                Shop_Item11_Info_Text = s;
+                break;
+            #endregion
+
+            #region Deck
+            case "Deck_Button_Vanguard_Text":
+                Deck_Button_Vanguard_Text = s;
+                break;
+            case "Deck_Button_Center_Text":
+                Deck_Button_Center_Text = s;
+                break;
+            case "Deck_Button_Support_Text":
+                Deck_Button_Support_Text = s;
+                break;
+            case "Deck_Button_All_Text":
+                Deck_Button_All_Text = s;
+                break;
+            case "Deck_Button_Back_Text":
+                Deck_Button_Back_Text = s;
+                break;
+            case "Deck_No_Text":
+                Deck_No_Text = s;
+                break;
+            case "Deck_Type_Text":
+                Deck_Type_Text = s;
+                break;
+            case "Deck_Name_Text":
+                Deck_Name_Text = s;
+                break;
+            case "Deck_Rarity_Text":
+                Deck_Rarity_Text = s;
+                break;
+            case "Deck_ATK_Text":
+                Deck_ATK_Text = s;
+                break;
+            case "Deck_Effect_Text":
+                Deck_Effect_Text = s;
+                break;
+            case "Deck_Info_Text":
+                Deck_Info_Text = s;
                 break;
             #endregion
 

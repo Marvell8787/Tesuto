@@ -44,8 +44,8 @@ public class UI_Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Text_Info.text = System_Interface.Info_Text;
-        Button_Material_Text.text = System_Interface.Lean_Button_Material_Text;
-        Button_Level_Text.text = System_Interface.Lean_Button_Level_Text;
+        Button_Material_Text.text = System_Interface.Learn_Button_Material_Text;
+        Button_Level_Text.text = System_Interface.Learn_Button_Level_Text;
 
         #region Home PointerEnter
         AddEvents.AddTriggersListener(GameObject_Task, EPEnter, Enter_Task);

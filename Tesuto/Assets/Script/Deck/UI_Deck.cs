@@ -25,22 +25,38 @@ public class UI_Deck : MonoBehaviour {
     public Button[] Button_VCSA = new Button[4];
     public Text[] Text_VCSA = new Text[4]; //按鈕的文字
     public Button Button_Back;
-
+   
     //文字
     public Text Text_No, Text_Type, Text_Name, Text_Rarity, Text_ATK, Text_Effect,Text_Info;
     public Text Text_No_Content,Text_Type_Content, Text_Name_Content, Text_Rarity_Content, Text_ATK_Content, Text_Effect_Content;
+    public Text Button_Vanguard_Text, Button_Center_Text, Button_Support_Text, Button_All_Text, Button_Back_Text;
+
 
     public AudioSource ok;
     #endregion
 
     // Use this for initialization
     void Start () {
+        Button_Vanguard_Text.text = System_Interface.Deck_Button_Vanguard_Text;
+        Button_Center_Text.text = System_Interface.Deck_Button_Center_Text;
+        Button_Support_Text.text = System_Interface.Deck_Button_Support_Text;
+        Button_All_Text.text = System_Interface.Deck_Button_All_Text;
+        Button_Back_Text.text = System_Interface.Deck_Button_Back_Text;
+
+        Text_No.text = System_Interface.Deck_No_Text;
+        Text_Type.text = System_Interface.Deck_Type_Text;
+        Text_Name.text = System_Interface.Deck_Name_Text;
+        Text_Rarity.text = System_Interface.Deck_Rarity_Text;
+        Text_ATK.text = System_Interface.Deck_ATK_Text;
+        Text_Effect.text = System_Interface.Deck_Effect_Text;
+        Text_Info.text = System_Interface.Deck_Info_Text;
+
         Button_VCSA[0].onClick.AddListener(VCSA_V);
         Button_VCSA[1].onClick.AddListener(VCSA_C);
         Button_VCSA[2].onClick.AddListener(VCSA_S);
         Button_VCSA[3].onClick.AddListener(VCSA_A);
         Button_Back.onClick.AddListener(Back);
-
+        
         #region Deck PointerClick
         AddEvents.AddTriggersListener(GameObject_Card[0], EPClick, Card_0);
         AddEvents.AddTriggersListener(GameObject_Card[1], EPClick, Card_1);
