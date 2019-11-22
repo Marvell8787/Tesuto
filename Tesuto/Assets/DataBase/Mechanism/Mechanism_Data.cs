@@ -38,7 +38,7 @@ static class Mechanism_Data{
                 switch (s)
                 {
                     case "Task":
-                        Learner_Data.Learner_Add("Score", Task_Bank.Task_Punishment[n]);
+                        Learner_Data.Learner_Add("Score", -Task_Bank.Task_Punishment[n]);
                         Learner_Data.Learner_ChangePoints_Status(0);
                         Learner_Data.Learner_ChangeMistakes_Status(0);
                         break;

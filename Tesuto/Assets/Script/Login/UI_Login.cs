@@ -9,6 +9,7 @@ public class UI_Login : MonoBehaviour {
     #region Variable
     private string user, pwd;
     Manager_Login ml = new Manager_Login();
+    Manager_Task mk = new Manager_Task();
     #endregion
 
     #region Main
@@ -139,6 +140,19 @@ public class UI_Login : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         if (ml.state == 1)
         {
+            switch (System_Setting.Language)
+            {
+                case 0:
+                    StartCoroutine(mk.DownloadTask("task_chinese.php"));
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case 1:
+                    StartCoroutine(mk.DownloadTask("task_english.php"));
+                    yield return new WaitForSeconds(1f);
+                    break;
+                default:
+                    break;
+            }
             Task_Data.Task_Init();
             Card_Data.Card_Init();
             Vocabulary_Data.Vocabulary_Init();

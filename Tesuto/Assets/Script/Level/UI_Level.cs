@@ -282,7 +282,7 @@ public class UI_Level : MonoBehaviour {
                 {
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
                     Flag.text = System_Interface.Level_PracticeFlag_Success;
-                    Mechanism_Data.Punishment("Learn", Level);
+                    Mechanism_Data.Reward("Learn", Level);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Coin").ToString();
 
                     if (Learner_Data.Learner_GetLearn_Status(Level) == 0)
