@@ -199,7 +199,6 @@ public class UI_Battle : MonoBehaviour {
         choose_Ans = "A";
         choose_Ans_Content = Question_Data.GetButton_Ans(0);
         //Debug.Log(Question_Check.Choose_Ans_Content);
-
         CheckAns();
     }
     void Choose_B()
@@ -263,6 +262,7 @@ public class UI_Battle : MonoBehaviour {
     #region Battle MainPhase Function
     void BattleStart()
     {
+        Button_Start.interactable = false;
         ui_Question.SetActive(false);
         Button_Surrender.interactable = true;
         Text_Message.text = System_Interface.Battle_Main_ChooseCard;
@@ -720,6 +720,7 @@ public class UI_Battle : MonoBehaviour {
     void NEXT()
     {
         GameObject_Next.SetActive(false);
+        ui_Question.SetActive(false);
         //先判斷遊戲是否結束 是:進入結算畫面 否:重整盤面 抽牌  進入QP
         if (Player.GetLP() < 1)
         {
