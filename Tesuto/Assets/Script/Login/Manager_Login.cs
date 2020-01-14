@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Manager_Login{
 
-    private string serverlink = System_Setting.serverlink;
+    private string serverlink= System_Setting.serverlink;
     private string[] items;
     public int state;
     

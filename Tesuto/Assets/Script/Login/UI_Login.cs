@@ -25,6 +25,8 @@ public class UI_Login : MonoBehaviour {
 
     #region Setting
     public Dropdown Dropdown_Language, Dropdown_Version;
+    public InputField InputField_IP;
+    public Button Button_IP;
     #endregion
 
     #region Login_Interface (Language)
@@ -54,6 +56,8 @@ public class UI_Login : MonoBehaviour {
 
         Dropdown_Language.onValueChanged.AddListener(LanguageSelect);
         Dropdown_Version.onValueChanged.AddListener(VersionSelect);
+        Button_IP.onClick.AddListener(ChangeIP);
+        InputField_IP.text = System_Setting.serverlink;
 
         StartCoroutine(ChangeLanguage());
     }
@@ -213,7 +217,7 @@ public class UI_Login : MonoBehaviour {
         ui_Thank.SetActive(false);
     }
 
-    #region Dropdown
+    #region Setting
     void LanguageSelect(int index)
     {
         switch (index)
@@ -273,6 +277,11 @@ public class UI_Login : MonoBehaviour {
         Language_Text.text = System_Interface.Language_Text;
         Version_Text.text = System_Interface.Version_Text;
         Resources_Text.text = System_Interface.Resources_Text;
+    }
+    void ChangeIP()
+    {
+        ok.Play();
+        System_Setting.serverlink = InputField_IP.text;
     }
     #endregion
 }
